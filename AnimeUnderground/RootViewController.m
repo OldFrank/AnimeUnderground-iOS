@@ -60,7 +60,7 @@
 
 - (void)onFinishUpdate:(AUnder*)aunder {
     NSLog(@"Actualizaci—n finalizada");   
-    self.title = @"Menœ";
+    self.title = @"Principal";
     [self.navigationController setNavigationBarHidden:NO];
     [loadingView removeFromSuperview];
     UIImage *image = [UIImage imageNamed: @"logo_barra_au.png"];

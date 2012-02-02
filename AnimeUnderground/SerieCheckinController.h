@@ -22,5 +22,6 @@
 -(void) setSerie:(Serie*) serie;
 -(IBAction) doCheckin:(id) sender;
 
+- (id)initWithSerie:(Serie*) serieAux;
 
 @end

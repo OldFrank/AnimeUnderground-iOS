@@ -11,7 +11,6 @@
 #import "SliderPageControl.h"
 
 @interface SeriesController : UIViewController <MMGridViewDataSource, MMGridViewDelegate> {
-    NSMutableArray *downloads;
     SliderPageControl *sliderPageControl;
     int randomSerieIndex;
 	BOOL pageControlUsed;

@@ -15,11 +15,12 @@
 #import "EnteDetailsController.h"
 #import "UIImage+Resize.h"
 #import "SerieCheckinController.h"
+#import "AUnder.h"
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 
 
 @implementation SerieDetailsController
-
-@class AUnder;
 
 @synthesize codigoSerie;
 @synthesize numeroCapitulos;
@@ -114,15 +115,11 @@
         
         cargo.nombreLabel.text = ces.ente.nick;
         cargo.cargoLabel.text = [NSString stringWithFormat:@"%d capítulos como:\n%@",ces.capitulos,ces.cargo];
-        // 140x170
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            NSURL *urlAvatar = [NSURL URLWithString: [[ces.ente avatar]retain]]; 
-            UIImage *imageAvatar = [UIImage imageWithData: [NSData dataWithContentsOfURL: urlAvatar]];
-            UIImage *imageAvatarResized = [imageAvatar resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(140, 170) interpolationQuality:kCGInterpolationHigh];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cargo.avatarImage.image = imageAvatarResized; 
-            });
-        });
+        
+        [cargo.avatarImage setImageWithURL:[NSURL URLWithString:[ces.ente avatar]] placeholderImage:nil];
+        [cargo.avatarImage setClipsToBounds:YES];
+        [cargo.avatarImage setContentMode:UIViewContentModeScaleAspectFill];
+        
         
         [self.enteScroll addSubview:cargo];
         
@@ -137,6 +134,11 @@
     // reorganización de la ventana
     
     [self.sinopsis sizeToFit];
+    [self.secuelaImagen setContentMode:UIViewContentModeScaleAspectFill];
+    [self.secuelaImagen setClipsToBounds:YES];
+    [self.precuelaImagen setContentMode:UIViewContentModeScaleAspectFill];
+    [self.precuelaImagen setClipsToBounds:YES];
+    
         
     if (serie.precuela!=nil && serie.secuela!=nil) {
         // tiene precuela y secuela
@@ -148,20 +150,9 @@
         precuelaTitulo.text = [[serie precuela]nombre];
         secuelaTitulo.text = [[serie secuela]nombre];
         
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            NSURL *urlPrecuela = [NSURL URLWithString: [[[serie precuela] imagen]retain]]; 
-            UIImage *imagePrecuela = [[UIImage imageWithData: [NSData dataWithContentsOfURL: urlPrecuela]] retain];
-            
-            
-            NSURL *urlSecuela = [NSURL URLWithString: [[[serie secuela] imagen]retain]]; 
-            UIImage *imageSecuela = [[UIImage imageWithData: [NSData dataWithContentsOfURL: urlSecuela]] retain];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [precuelaImagen setImage:imagePrecuela forState:UIControlStateNormal];
-                [secuelaImagen setImage:imageSecuela forState:UIControlStateNormal];
-            });
-
-        });
-
+        [precuelaImagen setImageWithURL:[NSURL URLWithString:[[serie precuela]imagen]] placeholderImage:nil];
+        [secuelaImagen setImageWithURL:[NSURL URLWithString:[[serie secuela]imagen]] placeholderImage:nil];
+       
         
     } else if (serie.precuela!=nil) {
         // tiene solo precuela
@@ -169,17 +160,7 @@
         [precuelaView setFrame:CGRectMake(0, (sinopsis.frame.origin.y+sinopsis.frame.size.height)+5, precuelaView.frame.size.width, precuelaView.frame.size.height)];
         scroll.contentSize = CGSizeMake(scroll.frame.size.width, (precuelaView.frame.origin.y+precuelaView.frame.size.height));
         precuelaTitulo.text = [[serie precuela]nombre];
-        
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            NSURL *urlPrecuela = [NSURL URLWithString: [[[serie precuela] imagen]retain]]; 
-            UIImage *imagePrecuela = [[UIImage imageWithData: [NSData dataWithContentsOfURL: urlPrecuela]] retain];
-            
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [precuelaImagen setImage:imagePrecuela forState:UIControlStateNormal];
-            });
-            
-        });
+        [precuelaImagen setImageWithURL:[NSURL URLWithString:[[serie precuela]imagen]] placeholderImage:nil];
 
     } else if (serie.secuela!=nil) {
         // tiene solo secuela
@@ -188,15 +169,7 @@
         scroll.contentSize = CGSizeMake(scroll.frame.size.width, (secuelaView.frame.origin.y+secuelaView.frame.size.height));
         secuelaTitulo.text = [[serie secuela]nombre];
         
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-
-            NSURL *urlSecuela = [NSURL URLWithString: [[[serie secuela] imagen]retain]]; 
-            UIImage *imageSecuela = [[UIImage imageWithData: [NSData dataWithContentsOfURL: urlSecuela]] retain];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [secuelaImagen setImage:imageSecuela forState:UIControlStateNormal];
-            });
-            
-        });
+        [secuelaImagen setImageWithURL:[NSURL URLWithString:[[serie secuela]imagen]] placeholderImage:nil];
         
     } else {
         // forever alone

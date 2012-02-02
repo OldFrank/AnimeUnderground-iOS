@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">11B26</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1881</string>
-		<string key="IBDocument.AppKitVersion">1138</string>
-		<string key="IBDocument.HIToolboxVersion">566.00</string>
+		<string key="IBDocument.SystemVersion">11D50</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
+		<string key="IBDocument.AppKitVersion">1138.32</string>
+		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">876</string>
+			<string key="NS.object.0">933</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -45,10 +45,9 @@
 					<object class="IBUILabel" id="1028071281">
 						<reference key="NSNextResponder" ref="593314272"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 190}, {280, 27}}</string>
+						<string key="NSFrame">{{20, 305}, {280, 27}}</string>
 						<reference key="NSSuperview" ref="593314272"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -70,13 +69,13 @@
 						<int key="IBUINumberOfLines">3</int>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<string key="name">Helvetica</string>
+							<string key="name">Helvetica-Bold</string>
 							<string key="family">Helvetica</string>
-							<int key="traits">0</int>
+							<int key="traits">2</int>
 							<double key="pointSize">14</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica</string>
+							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">14</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -84,7 +83,7 @@
 					<object class="IBUIImageView" id="48668233">
 						<reference key="NSNextResponder" ref="593314272"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{40, -1}, {240, 186}}</string>
+						<string key="NSFrame">{{40, 114}, {240, 186}}</string>
 						<reference key="NSSuperview" ref="593314272"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="474456078"/>
@@ -99,7 +98,7 @@
 					<object class="IBUIActivityIndicatorView" id="474456078">
 						<reference key="NSNextResponder" ref="593314272"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{142, 53}, {37, 37}}</string>
+						<string key="NSFrame">{{142, 168}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="593314272"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1028071281"/>
@@ -110,11 +109,14 @@
 						<int key="IBUIStyle">0</int>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 230}</string>
+				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="48668233"/>
-				<reference key="IBUIBackgroundColor" ref="348662217"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MCAwIDAAA</bytes>
+				</object>
 				<float key="IBUIAlpha">0.80000001192092896</float>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -296,7 +298,6 @@
 						<string key="NSFrame">{{32, 373}, {110, 21}}</string>
 						<reference key="NSSuperview" ref="902259667"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -417,6 +418,14 @@
 					<int key="connectionID">22</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">loadingSpinner</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="474456078"/>
+					</object>
+					<int key="connectionID">64</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">showNoticias</string>
 						<reference key="source" ref="1044464783"/>
@@ -451,14 +460,6 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">62</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">loadingSpinner</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="474456078"/>
-					</object>
-					<int key="connectionID">64</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -779,6 +780,6 @@
 				<string>{420, 420}</string>
 			</object>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">876</string>
+		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
 </archive>

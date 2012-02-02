@@ -45,7 +45,7 @@
         self.backgroundView = [[[UIView alloc] initWithFrame:CGRectNull] autorelease];
         self.backgroundView.backgroundColor = [UIColor lightGrayColor];
         [self addSubview:self.backgroundView];
-        
+                
         self.loadingView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]autorelease];
         self.loadingView.center = self.center;
         self.loadingView.hidesWhenStopped = YES;

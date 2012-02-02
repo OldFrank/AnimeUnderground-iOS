@@ -13,10 +13,11 @@
 #import "MMGridViewDefaultCell.h"
 #import "UIImage+Resize.h"
 #import "SliderPageControl.h"
-
+#import "AUnder.h"
+#import "UIImageView+WebCache.h"
+#import "SerieDetailsController.h"
 
 @implementation SeriesController
-@class AUnder,SerieDetailsController;
 @synthesize gridView, nombreSerie, sliderPageControl, datosSerie, imagenSerie;
 
 - (void)dealloc
@@ -26,7 +27,6 @@
     [datosSerie release];
     [imagenSerie release];
     [gridView release];
-    [downloads release];
     [forLazyLoading release];
     [forLazySpinners release];
     [super dealloc];
@@ -40,7 +40,6 @@
     [super viewDidLoad];
     self.title = @"Series";
     
-    downloads = [[[NSMutableArray alloc]init]retain];
     int size = [[[AUnder sharedInstance]series]count];
     forLazyLoading = [[[NSMutableArray alloc]initWithCapacity:size]retain];
     forLazySpinners = [[[NSMutableArray alloc]initWithCapacity:size]retain];
@@ -48,11 +47,6 @@
     
     // iniciamos lazy loading de imágenes
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        for (Serie *s in [[AUnder sharedInstance] series]) {
-            DeviantDownload *dd = [[DeviantDownload alloc]init];
-            dd.urlString = [[s imagen] retain];
-            [downloads addObject: [dd retain]];
-        }
         Serie *rndSerie = nil;
         do {
             int randomSerie = arc4random() % size;
@@ -135,25 +129,30 @@
     MMGridViewDefaultCell *cell = [[[MMGridViewDefaultCell alloc] initWithFrame:CGRectNull] autorelease];
     Serie *s = [[[AUnder sharedInstance]series]objectAtIndex:index];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", s.nombre];
-    
-    DeviantDownload *download = [downloads objectAtIndex:index];
-    
-    UIImage *imagen = download.image;
-    if (imagen == nil) {
-        [cell.loadingView startAnimating];
-        imagen = [UIImage imageNamed:@"logro_barra_au.png"];
-        download.delegate = self;
-    }
-    
+       
     [forLazyLoading insertObject:cell.backgroundView atIndex:index];
     [forLazySpinners insertObject:cell.loadingView atIndex:index];
     
+    
+    if (![cell.backgroundView tag]) {
+        [cell.backgroundView setTag:1];
+        CGRect newRect = CGRectMake(0, 0, 155, 90);
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:newRect];
+        [imgView setContentMode:UIViewContentModeScaleAspectFill];
+        [imgView setImageWithURL:[NSURL URLWithString:[s imagen]] placeholderImage:[UIImage imageNamed:@"logro_barra_au.png"]];
+        [cell.backgroundView setClipsToBounds:YES];
+        [cell.backgroundView addSubview:imgView];
+        [imgView release];
+        
+    }
+    
     // creamos el thumb de tamaño adecuado
     
-    UIImage *tmp = [imagen resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(155, 105) interpolationQuality:kCGInterpolationMedium];
+    //UIImage *tmp = [imagen resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(155, 105) interpolationQuality:kCGInterpolationMedium];
     
     
-    cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:tmp];
+    //cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:tmp];
+
     return cell;
 }
 
@@ -183,7 +182,7 @@
 	NSString *hintTitle = [[NSString alloc]initWithFormat:@"Página %d",page];
 	return hintTitle;
 }
-
+/*
 - (void)downloadDidFinishDownloading:(DeviantDownload *)download {
     
     NSUInteger index = [downloads indexOfObject:download]; 
@@ -201,6 +200,6 @@
     });
     
     download.delegate = nil;
-}
+}*/
 
 @end
