@@ -11,9 +11,10 @@
 #import "Ente.h"
 #import "Serie.h"
 #import "NoticiaCell.h"
-#import "DeviantDownload.h"
 #import "Imagen.h"
 #import "NoticiaDetailsController.h"
+#import "AUnder.h"
+#import "UIImageView+WebCache.h"
 
 @implementation NoticiasController
 
@@ -30,7 +31,6 @@
 
 - (void)dealloc
 {
-    [downloads release];
     [super dealloc];
 }
 
@@ -52,25 +52,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
  
     [self setTitle:@"Noticias"];
-    
-    downloads = [[[NSMutableArray alloc]init]retain];
-    
-    for (Noticia *n in [[AUnder sharedInstance] noticias]) {
-        DeviantDownload *dd = [[DeviantDownload alloc]init];
-        NSString *def = @"http://www.aunder.org/templates/v3Theme/img/ico_news.png";
-        if ([[n imagenes]count]>0) {
-            Imagen *img = [[n imagenes]objectAtIndex:0];
-            def = [img getThumbUrl];
-        }
-        dd.urlString = [def retain];
-        [downloads addObject: [dd retain]];
-        
-    }
-    
-    [self.tableView reloadData];
-
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+       
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
@@ -143,31 +125,13 @@
     
     cell.titulo.tag = [noti codigo];
     
-    DeviantDownload *download = [downloads objectAtIndex:indexPath.row];
-    //cell.cellLabel.text = download.filename;
-    UIImage *cellImage = download.image;
-    if (cellImage == nil)
-    {
-        //[cell.loading startAnimating];
-        download.delegate = self;
+    if ([[noti imagenes] count]>0 && cell.imageView.image==nil) {
+        NSString *url = [(Imagen*)[noti.imagenes objectAtIndex:0] getThumbUrl];
+        [cell.imagen setImageWithURL:[NSURL URLWithString: url] placeholderImage:nil];
     }
-    else
-        [cell.loading stopAnimating];
-    
-    cell.imagen.image = [cellImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(70, 40) interpolationQuality:kCGInterpolationMedium];;
     
     // Configure the cell.
     return cell;
-}
-
-- (void)downloadDidFinishDownloading:(DeviantDownload *)download
-{
-    NSUInteger index = [downloads indexOfObject:download]; 
-    NSUInteger indices[] = {0, index};
-    NSIndexPath *path = [[NSIndexPath alloc] initWithIndexes:indices length:2];
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
-    [path release];
-    download.delegate = nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -186,6 +150,7 @@
     tmp.codigoNoticia = codigo;
 	
 	[self.navigationController pushViewController:tmp animated:YES];
+    [tmp release];
 }
 
 @end

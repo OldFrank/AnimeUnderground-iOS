@@ -10,7 +10,6 @@
 
 
 @interface NoticiasController : UITableViewController {
-    NSMutableArray *downloads;
 }
 
 @end
