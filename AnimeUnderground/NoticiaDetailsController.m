@@ -14,10 +14,12 @@
 #import "Noticia.h"
 #import "AUnder.h"
 #import "UIImage+Resize.h"
+#import "AUnder.h"
+#import "Noticia.h"
+#import "ForoController.h"
+#import "UIImageView+WebCache.h"
 
 @implementation NoticiaDetailsController
-
-@class AUnder,Noticia,ForoController;
 
 @synthesize codigoNoticia;
 @synthesize nombreNoticia;
@@ -39,6 +41,7 @@
 
 - (void)dealloc
 {
+    [noti release];
     [self.fechaNoticia release];
     [self.nombreNoticia release];
     [self.nombreAutor release];
@@ -64,7 +67,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    Noticia *noti = [[AUnder sharedInstance]getNoticiaByCodigo:codigoNoticia];
+    noti = [[[AUnder sharedInstance]getNoticiaByCodigo:codigoNoticia]retain];
     self.title = [NSString stringWithFormat:@"Detalles de %@",[noti titulo]];
     self.fechaNoticia.text = [noti fecha];
     self.textoNoticia.text = [noti texto];
@@ -75,15 +78,7 @@
     
     tid = [[NSString alloc]initWithString:[noti tid]];
     codigoEnte = [[noti autor]codigo];
-    
-    downloads = [[[NSMutableArray alloc]init]retain];
-    totalImagenes = [[noti imagenes]count];
-    for (Imagen *s in [noti imagenes]) {
-        DeviantDownload *dd = [[DeviantDownload alloc]init];
-        dd.urlString = [s getImageUrl];
-        [downloads addObject: [dd retain]];
-    }
-    
+   
     
     //Si la noticia es de una serie se podrá hacer checkin en cualquier otro caso estoy haciendo check a un ente desconocido.
     
@@ -121,9 +116,8 @@
     
         self.navigationItem.rightBarButtonItem = checkButtonItem; 
         
-        imagenesNoticia.type = iCarouselTypeCoverFlow;
+        imagenesNoticia.type = iCarouselTypeCoverFlow2;
         [imagenesNoticia reloadData];
-
         
     } else {
 
@@ -187,6 +181,7 @@
     NSLog(@"Click en ente %d",codigoEnte);
     EnteDetailsController *edc = [[EnteDetailsController alloc]initWithEnteId:codigoEnte];
     [self.navigationController pushViewController:edc animated:YES];
+    [edc release];
 }
 
 -(IBAction)showForumThread {
@@ -194,6 +189,7 @@
     ForoController *fc = [[ForoController alloc]init];
     [fc setUrlString:[NSString stringWithFormat:@"http://foro.aunder.org/showthread.php?tid=%@",tid]];
     [self.navigationController pushViewController:fc animated:YES];
+    [fc release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -203,56 +199,22 @@
 }
 
 
-- (UIImage*)imageWithImage:(UIImage*)image 
-              scaledToSize:(CGSize)newSize;
-{
-    UIGraphicsBeginImageContext( newSize );
-    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
-}
-
-
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    return totalImagenes;
+    return [noti.imagenes count];
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index
 {
-    //create a numbered view
+
+    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 250, 250)];
+    [imgView setContentMode:UIViewContentModeScaleAspectFit];
+    [imgView setClipsToBounds:YES];
+    Imagen *img = [[noti imagenes]objectAtIndex:index];
+    [imgView setImageWithURL:[NSURL URLWithString:[img getThumbUrl]]];
     
-    DeviantDownload *download = [downloads objectAtIndex:index];
-    
-    UIImage *imagen = download.image;
-    if (imagen == nil) {
-        imagen = [UIImage imageNamed:@"cargando.png"];
-        download.delegate = self;
-    }
-    //UIView *view = [[[UIImageView alloc] initWithImage:[self imageWithImage:imagen scaledToSize:CGSizeMake(200, 200)]] autorelease];
-    imagen = [imagen resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(250, 250) interpolationQuality:kCGInterpolationMedium];
-    UIView *view = [[[UIImageView alloc] initWithImage:imagen ] autorelease];
-        
-    //UIView *view = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page.png"]] autorelease];
-    
-    return view;
+    return imgView;
 }
-
-
-- (void)downloadDidFinishDownloading:(DeviantDownload *)download {
-    
-    NSUInteger index = [downloads indexOfObject:download]; 
-    NSUInteger indices[] = {0, index};
-    NSIndexPath *path = [[NSIndexPath alloc] initWithIndexes:indices length:2];
-    
-    //[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
-    [path release];
-    [imagenesNoticia reloadData];
-    download.delegate = nil;
-}
-
 
 - (float)carouselItemWidth:(iCarousel *)carousel
 {

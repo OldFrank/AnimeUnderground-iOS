@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
-#import "DeviantDownload.h"
+#import "Noticia.h"
 
-@interface NoticiaDetailsController : UIViewController<DeviantDownloadDelegate> {
+@interface NoticiaDetailsController : UIViewController {
     int codigoNoticia;
-    NSMutableArray *downloads;
     int totalImagenes;
     NSString *tid;
     int codigoEnte;
+    Noticia *noti;
 }
 
 @property (nonatomic, assign) int codigoNoticia;
