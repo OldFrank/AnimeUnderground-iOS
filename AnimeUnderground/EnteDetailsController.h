@@ -11,16 +11,13 @@
 #import "MMGridView.h"
 #import "SliderPageControl.h"
 
-@interface EnteDetailsController : UIViewController <MMGridViewDataSource, MMGridViewDelegate> {
+@interface EnteDetailsController : UIViewController <MMGridViewDataSource, MMGridViewDelegate, SliderPageControlDelegate> {
     Ente *ente;
     IBOutlet UILabel *estado;
     IBOutlet UIImageView *avatar;
     IBOutlet UILabel *subnick;
     IBOutlet UILabel *datosExtra;
     IBOutlet UILabel *rolFavorito;
-    NSMutableArray *imagenes;
-    NSMutableArray *forLazyLoading;
-    NSMutableArray *forLazySpinners;
     SliderPageControl *sliderPageControl;
     
 }

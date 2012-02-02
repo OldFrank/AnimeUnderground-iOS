@@ -7,14 +7,14 @@
 //
 
 #import "EntesController.h"
-#import "DeviantDownload.h"
 #import "EnteDetailsController.h"
 #import "EnteCell.h"
 #import "Ente.h"
 #import "UIImage+Resize.h"
+#import "UIImageView+WebCache.h"
+#import "AUnder.h"
 
 @implementation EntesController
-@class AUnder;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,8 +31,7 @@
     [inactivos release];
     [listas release];
     [downloads release];
-    [imageViews release];
-    [loadingViews release];
+
     [super dealloc];
 }
 
@@ -53,15 +52,8 @@
     activos = [[[NSMutableArray alloc]init]retain];
     inactivos = [[[NSMutableArray alloc]init]retain];
     listas = [[[NSMutableArray alloc]init]retain];
-    int number = [[[AUnder sharedInstance]entes]count];
-    imageViews = [[[NSMutableArray alloc]initWithCapacity:number]retain];
-    loadingViews = [[[NSMutableArray alloc]initWithCapacity:number]retain];
     
     for (Ente *n in [[AUnder sharedInstance] entes]) {
-        DeviantDownload *dd = [[DeviantDownload alloc]init];
-        dd.urlString = [n avatar];
-        
-        [downloads addObject: [dd retain]];
         if ([n isActivo]) 
             [activos addObject:[n retain]];
         else
@@ -140,34 +132,10 @@
     int idx = indexPath.row;
     if (!([ente isActivo]))
         idx += [activos count];
-    DeviantDownload *download = [downloads objectAtIndex:idx];
-    UIImage *cellImage = download.image;
-    if (cellImage == nil)
-    {
-        [cell.loading startAnimating];
-        download.delegate = self;
-    }
-    else
-        [cell.loading stopAnimating];
-    cell.imagenAvatar.image = [cellImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(105, 60) interpolationQuality:kCGInterpolationHigh];;
-    
-    [imageViews insertObject:cell.imagenAvatar atIndex:idx];
-    [loadingViews insertObject:cell.loading atIndex:idx];
-    
+  
+    [cell.imagenAvatar setImageWithURL:[NSURL URLWithString:[ente avatar]] placeholderImage:nil];
+      
     return cell;
-}
-
-- (void)downloadDidFinishDownloading:(DeviantDownload *)download
-{
-    NSUInteger index = [downloads indexOfObject:download]; 
-    
-    UIActivityIndicatorView *act = [loadingViews objectAtIndex:index];
-    UIImageView *img = [imageViews objectAtIndex:index];
-    
-    img.image = download.image;
-    [act stopAnimating];
-    
-    download.delegate = nil;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -193,6 +161,7 @@
     NSLog(@"Ente seleccionado %@",[ente nick]);
     EnteDetailsController *edc = [[EnteDetailsController alloc]initWithEnteId:ente.codigo];
     [self.navigationController pushViewController:edc animated:YES];
+    [edc release];
 }
 
 @end

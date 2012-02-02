@@ -27,8 +27,7 @@
     [datosSerie release];
     [imagenSerie release];
     [gridView release];
-    [forLazyLoading release];
-    [forLazySpinners release];
+    [loadingRecommended release];
     [super dealloc];
 }
 
@@ -41,9 +40,10 @@
     self.title = @"Series";
     
     int size = [[[AUnder sharedInstance]series]count];
-    forLazyLoading = [[[NSMutableArray alloc]initWithCapacity:size]retain];
-    forLazySpinners = [[[NSMutableArray alloc]initWithCapacity:size]retain];
-    
+    [loadingRecommended startAnimating];
+    [nombreSerie setText:@""];
+    [imagenSerie setImage:nil];
+    [datosSerie setText:@""];
     
     // iniciamos lazy loading de imágenes
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -61,6 +61,7 @@
             [nombreSerie setText:[[rndSerie nombre]retain]];
             [imagenSerie setImage:image];
             [datosSerie setText:[[NSString alloc] initWithFormat:@"%@ - %d eps - %@",[rndSerie getGenerosString],[rndSerie capitulosTotales],[rndSerie estudio]]];
+            [loadingRecommended stopAnimating];
         });
         
         
@@ -90,6 +91,8 @@
 
 - (void)viewDidUnload
 {
+    [loadingRecommended release];
+    loadingRecommended = nil;
     [super viewDidUnload];
     self.gridView = nil;
     self.nombreSerie = nil;
@@ -129,11 +132,7 @@
     MMGridViewDefaultCell *cell = [[[MMGridViewDefaultCell alloc] initWithFrame:CGRectNull] autorelease];
     Serie *s = [[[AUnder sharedInstance]series]objectAtIndex:index];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", s.nombre];
-       
-    [forLazyLoading insertObject:cell.backgroundView atIndex:index];
-    [forLazySpinners insertObject:cell.loadingView atIndex:index];
-    
-    
+
     if (![cell.backgroundView tag]) {
         [cell.backgroundView setTag:1];
         CGRect newRect = CGRectMake(0, 0, 155, 90);
@@ -146,13 +145,6 @@
         
     }
     
-    // creamos el thumb de tamaño adecuado
-    
-    //UIImage *tmp = [imagen resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(155, 105) interpolationQuality:kCGInterpolationMedium];
-    
-    
-    //cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:tmp];
-
     return cell;
 }
 
@@ -182,24 +174,5 @@
 	NSString *hintTitle = [[NSString alloc]initWithFormat:@"Página %d",page];
 	return hintTitle;
 }
-/*
-- (void)downloadDidFinishDownloading:(DeviantDownload *)download {
-    
-    NSUInteger index = [downloads indexOfObject:download]; 
-    
-    UIView *vista = [forLazyLoading objectAtIndex:index];
-    UIActivityIndicatorView *spinner = [forLazySpinners objectAtIndex:index];
-    [spinner stopAnimating];
-    [spinner release];
-    
-    UIImage *tmp = [[download image] resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(155, 105) interpolationQuality:kCGInterpolationMedium];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        vista.backgroundColor = [UIColor colorWithPatternImage:tmp];
-
-    });
-    
-    download.delegate = nil;
-}*/
 
 @end

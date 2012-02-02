@@ -10,6 +10,8 @@
 @class Foro;
 @class Serie;
 @class Checkin;
+@class Ente;
+@class Noticia;
 
 @interface AUnder : NSObject {
     NSLock *lock;
@@ -32,6 +34,9 @@
 - (void)setUpdateHandler:(id)delegate;
 
 - (Serie*)getSerieById:(int)codigo;
+- (Ente*)getEnteByName:(NSString*)nombre;
+- (Ente*)getEnteById:(int)enteId;
+- (Noticia*)getNoticiaByCodigo:(int)codigo;
 
 - (Foro *) foro;
 - (Checkin *) checkin;

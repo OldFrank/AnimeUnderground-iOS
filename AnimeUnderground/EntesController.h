@@ -8,15 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface EntesController : UITableViewController {
     NSMutableArray *downloads;
 
     NSMutableArray *listas;
     NSMutableArray *activos;
     NSMutableArray *inactivos;
-    NSMutableArray *imageViews;
-    NSMutableArray *loadingViews;
+
 }
 
 @end

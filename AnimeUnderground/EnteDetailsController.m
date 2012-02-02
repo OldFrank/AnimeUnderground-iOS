@@ -10,12 +10,18 @@
 #import "Ente.h"
 #import "MMGridViewDefaultCell.h"
 #import "CargoEnteSerie.h"
-#import "DeviantDownload.h"
 #import "SerieDetailsController.h"
+#import "AUnder.h"
+#import "UIImageView+WebCache.h"
+
+@interface EnteDetailsController (Private)
+
+- (void) setupGridPages;
+
+@end
 
 @implementation EnteDetailsController
 
-@class AUnder;
 @synthesize estado;
 @synthesize avatar;
 @synthesize subnick;
@@ -38,11 +44,7 @@
     self = [super init];
     if (self) {
         ente = [[[AUnder sharedInstance] getEnteById:enteId]retain];
-        
-        imagenes = [[[NSMutableArray alloc]initWithCapacity:[[ente cargos]count]]retain];
-        
-        forLazyLoading = [[[NSMutableArray alloc]initWithCapacity:[[ente cargos]count]]retain];
-        forLazySpinners = [[[NSMutableArray alloc]initWithCapacity:[[ente cargos]count]]retain];
+
     }
     
     return self;
@@ -51,9 +53,6 @@
 - (void)dealloc
 {
     [rolFavorito release];
-    [forLazySpinners release];
-    [forLazyLoading release];
-    [imagenes release];
     [datosExtra release];
     [subnick release];
     [estado release];
@@ -101,12 +100,11 @@
     
     // iniciamos lazy loading de imágenes
     
+    [self.avatar setImageWithURL:[NSURL URLWithString:ente.avatar]];
+    
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         // carga de lazyloading
         for (CargoEnteSerie *s in ente.cargos) {
-            DeviantDownload *dd = [[DeviantDownload alloc]init];
-            dd.urlString = [[s.serie imagen] retain];
-            [imagenes addObject: [dd retain]];
             
             // aprovechamos para hacer un piggyback de la seleccion de rol favorito            
             NSNumber *num = [roles objectForKey:s.cargo];
@@ -134,14 +132,9 @@
             }
         }
         
-        // lazyloading adhoc para avatar
-        NSURL *urlAvatar = [NSURL URLWithString: ente.avatar]; 
-        UIImage *imageAvatar = [[UIImage imageWithData: [NSData dataWithContentsOfURL: urlAvatar]] retain];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.rolFavorito setText: [[NSString alloc] initWithFormat:@"%@ (%d veces)",cargoMax,numMax]];
             [cargoMax release];
-            [self.avatar setImage:imageAvatar];
-            [imageAvatar release];
         });
 
     });
@@ -196,26 +189,19 @@
     
     CargoEnteSerie *s = [[ente cargos]objectAtIndex:index];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%d cap.)",s.cargo,s.capitulos];
-        
-    DeviantDownload *download = [imagenes objectAtIndex:index];
     
-    UIImage *imagen = download.image;
-    if (imagen == nil) {
-        [cell.loadingView startAnimating];
-        imagen = [UIImage imageNamed:@"logro_barra_au.png"];
-        download.delegate = self;
+    if (![cell.backgroundView tag]) {
+        [cell.backgroundView setTag:1];
+        CGRect newRect = CGRectMake(0, 0, 155, 40);
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:newRect];
+        [imgView setContentMode:UIViewContentModeScaleAspectFill];
+        [imgView setImageWithURL:[NSURL URLWithString:[[s serie]imagen]] placeholderImage:[UIImage imageNamed:@"logro_barra_au.png"]];
+        [cell.backgroundView setClipsToBounds:YES];
+        [cell.backgroundView addSubview:imgView];
+        [imgView release];
+        
     }
 
-    
-    [forLazyLoading insertObject:cell.backgroundView atIndex:index];
-    [forLazySpinners insertObject:cell.loadingView atIndex:index];
-    
-    // creamos el thumb de tamaño adecuado
-    
-    UIImage *tmp = [imagen resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(155, 55) interpolationQuality:kCGInterpolationMedium];
-    
-    
-    cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:tmp];
     return cell;
 }
 
@@ -237,25 +223,6 @@
 {
     NSLog(@"Cambio de página a %d",index);
     [self setupGridPages];
-}
-
-- (void)downloadDidFinishDownloading:(DeviantDownload *)download {
-    
-    NSUInteger index = [imagenes indexOfObject:download]; 
-    
-    UIView *vista = [forLazyLoading objectAtIndex:index];
-    UIActivityIndicatorView *spinner = [forLazySpinners objectAtIndex:index];
-    [spinner stopAnimating];
-    [spinner release];
-    
-    UIImage *tmp = [[download image] resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(155, 55) interpolationQuality:kCGInterpolationMedium];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        vista.backgroundColor = [UIColor colorWithPatternImage:tmp];
-        
-    });
-    
-    download.delegate = nil;
 }
 
 @end

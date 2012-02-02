@@ -10,12 +10,11 @@
 #import "MMGridView.h"
 #import "SliderPageControl.h"
 
-@interface SeriesController : UIViewController <MMGridViewDataSource, MMGridViewDelegate> {
+@interface SeriesController : UIViewController <MMGridViewDataSource, MMGridViewDelegate, SliderPageControlDelegate> {
     SliderPageControl *sliderPageControl;
     int randomSerieIndex;
 	BOOL pageControlUsed;
-    NSMutableArray *forLazyLoading;
-    NSMutableArray *forLazySpinners;
+    IBOutlet UIActivityIndicatorView *loadingRecommended;
 }
 
 @property (nonatomic, retain) IBOutlet MMGridView *gridView;
