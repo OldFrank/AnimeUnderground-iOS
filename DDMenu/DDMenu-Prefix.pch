@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'DDMenu' target in the 'DDMenu' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <QuartzCore/QuartzCore.h>
+#endif

@@ -95,6 +95,10 @@
 		AC4D38BF14DB1F75004ECB45 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4D38B714DB1F75004ECB45 /* SDWebImageManager.m */; };
 		AC4D38C014DB1F75004ECB45 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4D38BA14DB1F75004ECB45 /* UIButton+WebCache.m */; };
 		AC4D38C114DB1F75004ECB45 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4D38BC14DB1F75004ECB45 /* UIImageView+WebCache.m */; };
+		AC4D38D014DB5B09004ECB45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7FDFF0134CC30D00063CCE /* Foundation.framework */; };
+		AC4D38DA14DB5B14004ECB45 /* libDDMenu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4D38CF14DB5B09004ECB45 /* libDDMenu.a */; };
+		AC4D38DD14DB5B3B004ECB45 /* DDMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = AC4D38DB14DB5B3B004ECB45 /* DDMenuController.h */; };
+		AC4D38DE14DB5B3B004ECB45 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4D38DC14DB5B3B004ECB45 /* DDMenuController.m */; };
 		AC60D6C9149941F5009E01F0 /* navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = AC60D6C7149941F4009E01F0 /* navbar.png */; };
 		AC60D6CA149941F5009E01F0 /* navbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC60D6C8149941F5009E01F0 /* navbar@2x.png */; };
 /* End PBXBuildFile section */
@@ -242,6 +246,10 @@
 		AC4D38BA14DB1F75004ECB45 /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
 		AC4D38BB14DB1F75004ECB45 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		AC4D38BC14DB1F75004ECB45 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		AC4D38CF14DB5B09004ECB45 /* libDDMenu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDDMenu.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC4D38D314DB5B09004ECB45 /* DDMenu-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDMenu-Prefix.pch"; sourceTree = "<group>"; };
+		AC4D38DB14DB5B3B004ECB45 /* DDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMenuController.h; sourceTree = "<group>"; };
+		AC4D38DC14DB5B3B004ECB45 /* DDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMenuController.m; sourceTree = "<group>"; };
 		AC60D6C7149941F4009E01F0 /* navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar.png; sourceTree = "<group>"; };
 		AC60D6C8149941F5009E01F0 /* navbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -255,6 +263,15 @@
 				1E7FDFEF134CC30D00063CCE /* UIKit.framework in Frameworks */,
 				1E7FDFF1134CC30D00063CCE /* Foundation.framework in Frameworks */,
 				1E7FDFF3134CC30D00063CCE /* CoreGraphics.framework in Frameworks */,
+				AC4D38DA14DB5B14004ECB45 /* libDDMenu.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC4D38CC14DB5B09004ECB45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC4D38D014DB5B09004ECB45 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +458,7 @@
 				1E019805135B13AF0053A16C /* icono_peque.png */,
 				1E019803135B13710053A16C /* icono.png */,
 				1E7FDFF4134CC30D00063CCE /* AnimeUnderground */,
+				AC4D38D114DB5B09004ECB45 /* DDMenu */,
 				1E7FDFED134CC30D00063CCE /* Frameworks */,
 				1E7FDFEB134CC30D00063CCE /* Products */,
 			);
@@ -450,6 +468,7 @@
 			isa = PBXGroup;
 			children = (
 				1E7FDFEA134CC30D00063CCE /* AnimeUnderground.app */,
+				AC4D38CF14DB5B09004ECB45 /* libDDMenu.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -540,7 +559,36 @@
 			name = GlossyButton;
 			sourceTree = "<group>";
 		};
+		AC4D38D114DB5B09004ECB45 /* DDMenu */ = {
+			isa = PBXGroup;
+			children = (
+				AC4D38DB14DB5B3B004ECB45 /* DDMenuController.h */,
+				AC4D38DC14DB5B3B004ECB45 /* DDMenuController.m */,
+				AC4D38D214DB5B09004ECB45 /* Supporting Files */,
+			);
+			path = DDMenu;
+			sourceTree = "<group>";
+		};
+		AC4D38D214DB5B09004ECB45 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AC4D38D314DB5B09004ECB45 /* DDMenu-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		AC4D38CD14DB5B09004ECB45 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC4D38DD14DB5B3B004ECB45 /* DDMenuController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		1E7FDFE9134CC30D00063CCE /* AnimeUnderground */ = {
@@ -559,6 +607,23 @@
 			productName = AnimeUnderground;
 			productReference = 1E7FDFEA134CC30D00063CCE /* AnimeUnderground.app */;
 			productType = "com.apple.product-type.application";
+		};
+		AC4D38CE14DB5B09004ECB45 /* DDMenu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC4D38D714DB5B09004ECB45 /* Build configuration list for PBXNativeTarget "DDMenu" */;
+			buildPhases = (
+				AC4D38CB14DB5B09004ECB45 /* Sources */,
+				AC4D38CC14DB5B09004ECB45 /* Frameworks */,
+				AC4D38CD14DB5B09004ECB45 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DDMenu;
+			productName = DDMenu;
+			productReference = AC4D38CF14DB5B09004ECB45 /* libDDMenu.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -581,6 +646,7 @@
 			projectRoot = "";
 			targets = (
 				1E7FDFE9134CC30D00063CCE /* AnimeUnderground */,
+				AC4D38CE14DB5B09004ECB45 /* DDMenu */,
 			);
 		};
 /* End PBXProject section */
@@ -689,6 +755,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AC4D38CB14DB5B09004ECB45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC4D38DE14DB5B3B004ECB45 /* DDMenuController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -785,6 +859,48 @@
 			};
 			name = Release;
 		};
+		AC4D38D814DB5B09004ECB45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/DDMenu.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DDMenu/DDMenu-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AC4D38D914DB5B09004ECB45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/DDMenu.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DDMenu/DDMenu-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -805,6 +921,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		AC4D38D714DB5B09004ECB45 /* Build configuration list for PBXNativeTarget "DDMenu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC4D38D814DB5B09004ECB45 /* Debug */,
+				AC4D38D914DB5B09004ECB45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
