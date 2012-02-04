@@ -43,7 +43,7 @@
 {
     [imagenesNoticia_ setDelegate: nil];
     [imagenesNoticia_ setDataSource: nil];
-    [imagenesNoticia_ release];
+    [imagenesNoticia_ release]; imagenesNoticia_ = nil;
     
     [noti release];
     [fechaNoticia release];

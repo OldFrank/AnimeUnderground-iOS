@@ -31,10 +31,16 @@
 {
     [super viewDidLoad];
 
+    // Ponemos la pantalla de carga lo primero
+    [self.view addSubview:loadingView];
+    loadingView.center = self.view.center;
+    [loadingSpinner startAnimating];
+
+    
     self.title = @"AnimeUnderground";
     self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
     [self.navigationController setNavigationBarHidden:YES];
-    //self.tableView = tableView;
+    
     [[AUnder sharedInstance]setUpdateHandler:self];
 
     [[AUnder sharedInstance]update]; // el método es asíncrono
@@ -44,12 +50,9 @@
 // delegates
 
 - (void)onBeginUpdate:(AUnder*)aunder {
-    NSLog(@"Actualización comenzada");
+    NSLog(@"Actualizacion comenzada");
     
-    [self.view addSubview:loadingView];
-    loadingView.center = self.view.center;
-    [loadingSpinner startAnimating];
-    
+      
 }
 - (void)onUpdateStatus:(AUnder*)aunder:(NSString*)withStatus {
     //NSLog(@"Estado actual de la actualización: %@",withStatus);
@@ -61,13 +64,9 @@
 }
 
 - (void)onFinishUpdate:(AUnder*)aunder {
-    NSLog(@"Actualización finalizada");   
+    NSLog(@"Actualizacion finalizada");   
     self.title = @"Principal";
-    
-    MenuViewController *mvc = [[MenuViewController alloc] initWithStyle:UITableViewStylePlain];
-    [[AppDelegate menuController] setLeftController:mvc];    
-    [mvc release];
-    
+       
     [self.navigationController setNavigationBarHidden:NO];
     [loadingView removeFromSuperview];
     UIImage *image = [UIImage imageNamed: @"logo_barra_au.png"];
@@ -88,13 +87,17 @@
         if (!isOK) {
             LoginViewController *lvc = [[LoginViewController alloc]init];
             [self.navigationController pushViewController:lvc animated:YES];
-            return;
         } 
     } 
     
     NoticiasController *nc = [[NoticiasController alloc] initWithStyle:UITableViewStylePlain];
     [[AppDelegate menuController] setRootController:nc animated:YES];
     [nc release];
+
+    MenuViewController *mvc = [[MenuViewController alloc] initWithStyle:UITableViewStylePlain];
+    [[AppDelegate menuController] setLeftController:mvc];    
+    [mvc release];
+
 }
 
 - (IBAction)showNoticias {
