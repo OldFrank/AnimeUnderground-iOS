@@ -172,6 +172,7 @@
 {
 
     [[AppDelegate menuController] setRootController:[menuElements_ objectAtIndex:indexPath.row] animated:YES];
+    [[AppDelegate menuController] setLeftController:self];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }

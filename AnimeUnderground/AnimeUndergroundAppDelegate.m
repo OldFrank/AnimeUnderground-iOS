@@ -39,12 +39,9 @@
     // tengo que mostrar aqui el nuevo view controller
     
     RootViewController *rc = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
-    MenuViewController *mvc = [[MenuViewController alloc] initWithStyle:UITableViewStylePlain];
     
     menuController_ = [[DDMenuController alloc]initWithRootViewController:rc];
-    [menuController_ setLeftController:mvc];
-
-    [mvc release];
+    
     [rc release];
     
     self.window.rootViewController = menuController_; //self.navigationController;

@@ -17,6 +17,7 @@
 #import "AUnder.h"
 #import "LoginViewController.h"
 #import "NoticiasController.h"
+#import "MenuViewController.h"
 
 
 @implementation RootViewController
@@ -32,7 +33,7 @@
 
     self.title = @"AnimeUnderground";
     self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
-    //[self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES];
     //self.tableView = tableView;
     [[AUnder sharedInstance]setUpdateHandler:self];
 
@@ -62,6 +63,11 @@
 - (void)onFinishUpdate:(AUnder*)aunder {
     NSLog(@"Actualizaci—n finalizada");   
     self.title = @"Principal";
+    
+    MenuViewController *mvc = [[MenuViewController alloc] initWithStyle:UITableViewStylePlain];
+    [[AppDelegate menuController] setLeftController:mvc];    
+    [mvc release];
+    
     [self.navigationController setNavigationBarHidden:NO];
     [loadingView removeFromSuperview];
     UIImage *image = [UIImage imageNamed: @"logo_barra_au.png"];
@@ -82,9 +88,13 @@
         if (!isOK) {
             LoginViewController *lvc = [[LoginViewController alloc]init];
             [self.navigationController pushViewController:lvc animated:YES];
+            return;
         } 
-    }
+    } 
     
+    NoticiasController *nc = [[NoticiasController alloc] initWithStyle:UITableViewStylePlain];
+    [[AppDelegate menuController] setRootController:nc animated:YES];
+    [nc release];
 }
 
 - (IBAction)showNoticias {

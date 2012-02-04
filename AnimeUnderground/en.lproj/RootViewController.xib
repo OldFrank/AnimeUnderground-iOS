@@ -42,12 +42,28 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUIImageView" id="48668233">
+						<reference key="NSNextResponder" ref="593314272"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrameSize">{320, 460}</string>
+						<reference key="NSSuperview" ref="593314272"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="474456078"/>
+						<int key="IBUIContentMode">4</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">Default.png</string>
+						</object>
+					</object>
 					<object class="IBUILabel" id="1028071281">
 						<reference key="NSNextResponder" ref="593314272"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 305}, {280, 27}}</string>
+						<string key="NSFrame">{{20, 385}, {280, 27}}</string>
 						<reference key="NSSuperview" ref="593314272"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -80,25 +96,10 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="48668233">
-						<reference key="NSNextResponder" ref="593314272"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{40, 114}, {240, 186}}</string>
-						<reference key="NSSuperview" ref="593314272"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="474456078"/>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">cargando.png</string>
-						</object>
-					</object>
 					<object class="IBUIActivityIndicatorView" id="474456078">
 						<reference key="NSNextResponder" ref="593314272"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{142, 168}, {37, 37}}</string>
+						<string key="NSFrame">{{142, 340}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="593314272"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1028071281"/>
@@ -298,6 +299,7 @@
 						<string key="NSFrame">{{32, 373}, {110, 21}}</string>
 						<reference key="NSSuperview" ref="902259667"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -490,8 +492,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="48668233"/>
-							<reference ref="1028071281"/>
 							<reference ref="474456078"/>
+							<reference ref="1028071281"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -763,7 +765,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>cargando.png</string>
+				<string>Default.png</string>
 				<string>entes.png</string>
 				<string>foro.png</string>
 				<string>logros.png</string>
@@ -772,7 +774,7 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{215, 202}</string>
+				<string>{320, 480}</string>
 				<string>{420, 420}</string>
 				<string>{420, 420}</string>
 				<string>{420, 420}</string>
