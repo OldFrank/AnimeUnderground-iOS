@@ -41,8 +41,8 @@
 
 - (void)dealloc
 {
-    imagenesNoticia_.delegate = nil;
-    imagenesNoticia_.dataSource = nil;
+    [imagenesNoticia_ setDelegate: nil];
+    [imagenesNoticia_ setDataSource: nil];
     [imagenesNoticia_ release];
     
     [noti release];

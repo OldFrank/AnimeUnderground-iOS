@@ -180,6 +180,7 @@
 {
     NSLog(@"Index of the menu item currently clicked: %u", ([indexPath row]));
 	int codigo = [[[[AUnder sharedInstance] noticias] objectAtIndex: indexPath.row] codigo];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	NoticiaDetailsController *tmp = [[NoticiaDetailsController alloc]init];
     tmp.codigoNoticia = codigo;
