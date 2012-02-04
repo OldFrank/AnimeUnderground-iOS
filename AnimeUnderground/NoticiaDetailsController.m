@@ -7,7 +7,6 @@
 //
 
 #import "NoticiaDetailsController.h"
-#import "iCarousel.h"
 #import "DeviantDownload.h"
 #import "Imagen.h"
 #import "EnteDetailsController.h"
@@ -17,7 +16,7 @@
 #import "AUnder.h"
 #import "Noticia.h"
 #import "ForoController.h"
-#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 
 @implementation NoticiaDetailsController
 
@@ -26,7 +25,6 @@
 @synthesize nombreAutor;
 @synthesize fechaNoticia;
 @synthesize textoNoticia;
-@synthesize imagenesNoticia = imagenesNoticia_;
 @synthesize scroll;
 
 
@@ -41,10 +39,7 @@
 
 - (void)dealloc
 {
-    [imagenesNoticia_ setDelegate: nil];
-    [imagenesNoticia_ setDataSource: nil];
-    [imagenesNoticia_ release]; imagenesNoticia_ = nil;
-    
+        
     [noti release];
     [fechaNoticia release];
     [nombreNoticia release];
@@ -53,6 +48,7 @@
     [textoNoticia release];
     [scroll release];
     
+    [buttonImage_ release];
     [super dealloc];
 }
 
@@ -120,21 +116,27 @@
     
         self.navigationItem.rightBarButtonItem = checkButtonItem; 
         
-        imagenesNoticia_.type = iCarouselTypeCoverFlow2;
-        [imagenesNoticia_ reloadData];
+        // hay que rellenar la scrollview con imagenes
         
+        if ([noti.imagenes count]>0) {
+            Imagen *imagen = [noti.imagenes objectAtIndex:0];
+            
+            [buttonImage_ setImageWithURL:[NSURL URLWithString:[imagen getThumbUrl]]];
+            [buttonImage_ setTag:0];
+            
+        }
+                       
     } else {
 
-        // eliminamos el iCarousel
+        // eliminamos el scroll horizontal paginado
         
-        int yTexto = imagenesNoticia_.frame.origin.y;
+        int yTexto = buttonImage_.frame.origin.y;
         int xTexto = textoNoticia.frame.origin.x;
         int wTexto = textoNoticia.frame.size.width;
         int hTexto = textoNoticia.frame.size.height;
         
         CGRect newFrame = CGRectMake(xTexto, yTexto, wTexto, hTexto);
         
-        [imagenesNoticia_ removeFromSuperview];
         
         [self.textoNoticia setFrame:newFrame];
 
@@ -146,6 +148,9 @@
  
 - (void)viewDidUnload
 {
+
+    [buttonImage_ release];
+    buttonImage_ = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -153,7 +158,6 @@
     self.textoNoticia = nil;
     self.nombreNoticia = nil;
     self.nombreAutor = nil;
-    self.imagenesNoticia = nil;
 
 }
 
@@ -200,52 +204,20 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
-- (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
-{
-    return [noti.imagenes count];
-}
-
-- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
-{
-
-    if (view==nil) {
-        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 250, 250)];
-        [imgView setContentMode:UIViewContentModeScaleAspectFit];
-        [imgView setClipsToBounds:YES];
-        Imagen *img = [[noti imagenes]objectAtIndex:index];
-        [imgView setImageWithURL:[NSURL URLWithString:[img getThumbUrl]]];
-        view = imgView;
+- (void)nextTap:(id)sender {
+       
+    int index = [buttonImage_ tag];
+    if (index+1>=[noti.imagenes count] || index<0) {
+        index = 0;
+    } else {
+        index++;
     }
     
-    return view;
+    Imagen *imagen = [noti.imagenes objectAtIndex:index];
+    [buttonImage_ setImageWithURL:[NSURL URLWithString:[imagen getThumbUrl]]];       
+    
+    [buttonImage_ setTag:index];
+    
 }
-
-- (float)carouselItemWidth:(iCarousel *)carousel
-{
-    //slightly wider than item view
-    return 150;
-}
-
-- (CGFloat)carousel:(iCarousel *)carousel itemAlphaForOffset:(CGFloat)offset
-{
-	//set opacity based on distance from camera
-    return 1.0f - fminf(fmaxf(offset, 0.0f), 1.0f);
-}
-
-- (CATransform3D)carousel:(iCarousel *)_carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
-{
-    //implement 'flip3D' style carousel
-    transform = CATransform3DRotate(transform, M_PI / 8.0f, 0.0f, 1.0f, 0.0f);
-    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * _carousel.itemWidth);
-}
-
-- (BOOL)carouselShouldWrap:(iCarousel *)car
-{
-    //wrap all carousels
-    return NO;
-}
-
-
 
 @end

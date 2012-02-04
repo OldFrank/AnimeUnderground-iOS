@@ -45,7 +45,7 @@
 					<object class="IBUIImageView" id="48668233">
 						<reference key="NSNextResponder" ref="593314272"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 460}</string>
+						<string key="NSFrame">{{0, -5}, {320, 460}}</string>
 						<reference key="NSSuperview" ref="593314272"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="474456078"/>
@@ -118,7 +118,6 @@
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MCAwIDAAA</bytes>
 				</object>
-				<float key="IBUIAlpha">0.80000001192092896</float>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="902259667">
@@ -491,9 +490,9 @@
 						<reference key="object" ref="593314272"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="48668233"/>
 							<reference ref="474456078"/>
 							<reference ref="1028071281"/>
+							<reference ref="48668233"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>

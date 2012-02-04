@@ -7,16 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "iCarousel.h"
 #import "Noticia.h"
 
-@interface NoticiaDetailsController : UIViewController <iCarouselDataSource, iCarouselDelegate> {
+@interface NoticiaDetailsController : UIViewController {
     int codigoNoticia;
     int totalImagenes;
     NSString *tid;
     int codigoEnte;
     Noticia *noti;
-    iCarousel *imagenesNoticia_;
+    IBOutlet UIButton *buttonImage_;
 }
 
 @property (nonatomic, assign) int codigoNoticia;
@@ -25,10 +24,10 @@
 @property (nonatomic,retain) IBOutlet UILabel *nombreAutor;
 @property (nonatomic,retain) IBOutlet UILabel *fechaNoticia;
 @property (nonatomic,retain) IBOutlet UILabel *textoNoticia;
-@property (nonatomic,retain) IBOutlet iCarousel *imagenesNoticia;
 @property (nonatomic,retain) IBOutlet UIScrollView *scroll;
 
--(IBAction)showEnteDetails;
--(IBAction)showForumThread;
+- (IBAction)showEnteDetails;
+- (IBAction)showForumThread;
+- (IBAction)nextTap:(id)sender;
 
 @end
