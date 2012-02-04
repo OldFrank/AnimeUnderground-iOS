@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DDMenuController.h"
 
 @interface AnimeUndergroundAppDelegate : NSObject <UIApplicationDelegate> {
-
+    DDMenuController *menuController_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-
+@property (retain, nonatomic) DDMenuController *menuController;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 @end

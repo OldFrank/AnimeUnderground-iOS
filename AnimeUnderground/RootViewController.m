@@ -16,6 +16,7 @@
 #import "Foro.h"
 #import "AUnder.h"
 #import "LoginViewController.h"
+#import "NoticiasController.h"
 
 
 @implementation RootViewController
@@ -23,7 +24,7 @@
 @synthesize loadingText;
 @synthesize loadingSpinner;
 
-@class AUnder, NoticiasController, SeriesController,EntesController, ForoController;
+@class SeriesController,EntesController, ForoController;
 
 - (void)viewDidLoad
 {
@@ -87,7 +88,7 @@
 }
 
 - (IBAction)showNoticias {
-    NoticiasController *nc = [[NoticiasController alloc]init];
+    NoticiasController *nc = [[NoticiasController alloc] initWithStyle:UITableViewStylePlain];
     [self.navigationController pushViewController:nc animated:YES];
 }
 

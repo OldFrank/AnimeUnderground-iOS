@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KNPathTableViewController.h"
 
 
-@interface NoticiasController : UITableViewController {
+@interface NoticiasController : KNPathTableViewController {
+    UILabel *infoLabel_;
 }
 
 @end

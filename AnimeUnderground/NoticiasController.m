@@ -31,6 +31,7 @@
 
 - (void)dealloc
 {
+    [infoLabel_ release];
     [super dealloc];
 }
 
@@ -52,7 +53,14 @@
     // self.clearsSelectionOnViewWillAppear = NO;
  
     [self setTitle:@"Noticias"];
-       
+    
+    infoLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(16, 4, 140, 20)];
+    infoLabel_.font = [UIFont boldSystemFontOfSize:12];
+    infoLabel_.textAlignment = UITextAlignmentLeft;
+    infoLabel_.textColor = [UIColor whiteColor];
+    infoLabel_.shadowColor = [UIColor blackColor];
+    infoLabel_.backgroundColor = [UIColor clearColor];
+    infoLabel_.shadowOffset = CGSizeMake(0, 1);
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
@@ -137,6 +145,33 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 45;
+}
+
+#pragma mark - KNTableView stuff
+
+-(void)infoPanelDidScroll:(UIScrollView *)scrollView atPoint:(CGPoint)point {
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+    Noticia *noti = [[[AUnder sharedInstance]noticias] objectAtIndex:indexPath.row];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"dd.MM.yy"];    
+    
+    NSDate *fecha = [dateFormatter dateFromString:noti.fecha];
+
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"es_ES"];
+    [dateFormatter setLocale:locale];
+    [dateFormatter setDateFormat: @"MMMM, yyyy"];
+    NSString *newFecha = [[dateFormatter stringFromDate:fecha] capitalizedString];
+    
+    [locale release];
+    [dateFormatter release];
+    
+    [infoLabel_ setText:newFecha];
+}
+
+-(void)infoPanelWillAppear:(UIScrollView *)scrollView {
+    if (![infoLabel_ superview]) [self.infoPanel addSubview:infoLabel_];
 }
 
 #pragma mark - Table view delegate

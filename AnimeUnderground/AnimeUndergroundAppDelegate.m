@@ -7,11 +7,15 @@
 //
 
 #import "AnimeUndergroundAppDelegate.h"
+#import "DDMenuController.h"
+#import "RootViewController.h"
+#import "MenuViewController.h"
 
 @implementation AnimeUndergroundAppDelegate
 
 
 @synthesize window=_window;
+@synthesize menuController = menuController_;
 
 @synthesize navigationController=_navigationController;
 
@@ -31,7 +35,19 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"autoLogin_preference"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    self.window.rootViewController = self.navigationController;
+    
+    // tengo que mostrar aqui el nuevo view controller
+    
+    RootViewController *rc = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    MenuViewController *mvc = [[MenuViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+    menuController_ = [[DDMenuController alloc]initWithRootViewController:rc];
+    [menuController_ setLeftController:mvc];
+
+    [mvc release];
+    [rc release];
+    
+    self.window.rootViewController = menuController_; //self.navigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }
