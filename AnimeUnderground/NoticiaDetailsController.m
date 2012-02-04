@@ -16,7 +16,7 @@
 #import "AUnder.h"
 #import "Noticia.h"
 #import "ForoController.h"
-#import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
 
 @implementation NoticiaDetailsController
 
@@ -48,7 +48,7 @@
     [textoNoticia release];
     [scroll release];
     
-    [buttonImage_ release];
+    [imagesScroll_ release];
     [super dealloc];
 }
 
@@ -66,7 +66,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+       
     noti = [[[AUnder sharedInstance]getNoticiaByCodigo:codigoNoticia]retain];
     self.title = [NSString stringWithFormat:@"Detalles de %@",[noti titulo]];
     self.fechaNoticia.text = [noti fecha];
@@ -118,19 +118,26 @@
         
         // hay que rellenar la scrollview con imagenes
         
-        if ([noti.imagenes count]>0) {
-            Imagen *imagen = [noti.imagenes objectAtIndex:0];
-            
-            [buttonImage_ setImageWithURL:[NSURL URLWithString:[imagen getThumbUrl]]];
-            [buttonImage_ setTag:0];
-            
+        int lastPosition = 0;
+        for (int i=0; i<[noti.imagenes count]; i++) {
+            Imagen *imagen = [noti.imagenes objectAtIndex:i];
+            UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(i*260, 0, 260, 170)];
+            [imgView setClipsToBounds:YES];
+            [imgView setContentMode:UIViewContentModeScaleAspectFill];
+            [imgView setImageWithURL:[NSURL URLWithString:[imagen getThumbUrl]]];
+            [imagesScroll_ addSubview:imgView];
+            lastPosition = imgView.frame.size.width + imgView.frame.origin.x;
+            [imgView release];
         }
+        
+        [imagesScroll_ setContentSize:CGSizeMake(lastPosition, 170)];
+
                        
     } else {
 
         // eliminamos el scroll horizontal paginado
         
-        int yTexto = buttonImage_.frame.origin.y;
+        int yTexto = imagesScroll_.frame.origin.y;
         int xTexto = textoNoticia.frame.origin.x;
         int wTexto = textoNoticia.frame.size.width;
         int hTexto = textoNoticia.frame.size.height;
@@ -148,17 +155,16 @@
  
 - (void)viewDidUnload
 {
-
-    [buttonImage_ release];
-    buttonImage_ = nil;
     [super viewDidUnload];
+
+    [imagesScroll_ release];
+    imagesScroll_ = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     self.fechaNoticia = nil;
     self.textoNoticia = nil;
     self.nombreNoticia = nil;
     self.nombreAutor = nil;
-
 }
 
 // Action que activa o desactiva el "boton" se puede asignar dos funciones distintas con un forState pero esto es mas rapido.
@@ -202,22 +208,6 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)nextTap:(id)sender {
-       
-    int index = [buttonImage_ tag];
-    if (index+1>=[noti.imagenes count] || index<0) {
-        index = 0;
-    } else {
-        index++;
-    }
-    
-    Imagen *imagen = [noti.imagenes objectAtIndex:index];
-    [buttonImage_ setImageWithURL:[NSURL URLWithString:[imagen getThumbUrl]]];       
-    
-    [buttonImage_ setTag:index];
-    
 }
 
 @end

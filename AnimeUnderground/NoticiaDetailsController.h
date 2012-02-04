@@ -15,7 +15,7 @@
     NSString *tid;
     int codigoEnte;
     Noticia *noti;
-    IBOutlet UIButton *buttonImage_;
+    IBOutlet UIScrollView *imagesScroll_;
 }
 
 @property (nonatomic, assign) int codigoNoticia;
@@ -28,6 +28,5 @@
 
 - (IBAction)showEnteDetails;
 - (IBAction)showForumThread;
-- (IBAction)nextTap:(id)sender;
 
 @end
