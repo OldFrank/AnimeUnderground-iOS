@@ -26,7 +26,7 @@
 @synthesize nombreAutor;
 @synthesize fechaNoticia;
 @synthesize textoNoticia;
-@synthesize imagenesNoticia;
+@synthesize imagenesNoticia = imagenesNoticia_;
 @synthesize scroll;
 
 
@@ -41,14 +41,18 @@
 
 - (void)dealloc
 {
+    imagenesNoticia_.delegate = nil;
+    imagenesNoticia_.dataSource = nil;
+    [imagenesNoticia_ release];
+    
     [noti release];
-    [self.fechaNoticia release];
-    [self.nombreNoticia release];
-    [self.nombreAutor release];
-    [self.fechaNoticia release];
-    [self.textoNoticia release];
-    [self.imagenesNoticia release];
-    [self.scroll release];
+    [fechaNoticia release];
+    [nombreNoticia release];
+    [nombreAutor release];
+    [fechaNoticia release];
+    [textoNoticia release];
+    [scroll release];
+    
     [super dealloc];
 }
 
@@ -116,21 +120,21 @@
     
         self.navigationItem.rightBarButtonItem = checkButtonItem; 
         
-        imagenesNoticia.type = iCarouselTypeCoverFlow2;
-        [imagenesNoticia reloadData];
+        imagenesNoticia_.type = iCarouselTypeCoverFlow2;
+        [imagenesNoticia_ reloadData];
         
     } else {
 
         // eliminamos el iCarousel
         
-        int yTexto = imagenesNoticia.frame.origin.y;
+        int yTexto = imagenesNoticia_.frame.origin.y;
         int xTexto = textoNoticia.frame.origin.x;
         int wTexto = textoNoticia.frame.size.width;
         int hTexto = textoNoticia.frame.size.height;
         
         CGRect newFrame = CGRectMake(xTexto, yTexto, wTexto, hTexto);
         
-        [imagenesNoticia removeFromSuperview];
+        [imagenesNoticia_ removeFromSuperview];
         
         [self.textoNoticia setFrame:newFrame];
 
@@ -145,13 +149,11 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    self.imagenesNoticia = nil;
     self.fechaNoticia = nil;
     self.textoNoticia = nil;
     self.nombreNoticia = nil;
     self.nombreAutor = nil;
-    self.scroll = nil;
-    
+    self.imagenesNoticia = nil;
 
 }
 
@@ -164,16 +166,16 @@
         NSLog(@"Click seleccionando el boton de check");
         custom.alpha = 1.0f;
         customText.alpha = 1.0f;
-        NSInteger capi = noti.capitulo;
-        [[[AUnder sharedInstance] checkin] add:noti.serie elCapitulo:[NSNumber numberWithInteger:capi]];
+        NSInteger capitulo = noti.capitulo;
+        [[[AUnder sharedInstance] checkin] add:noti.serie elCapitulo:[NSNumber numberWithInteger:capitulo]];
         
         //TODO hago check a la serie
     } else {
         NSLog(@"Click deseleccionando el boton de check");
         custom.alpha = 0.5f;
         customText.alpha = 0.5f;
-        NSInteger capi = noti.capitulo;
-        [[[AUnder sharedInstance] checkin] del:noti.serie elCapitulo:[NSNumber numberWithInteger:capi]];
+        NSInteger capitulo1 = noti.capitulo;
+        [[[AUnder sharedInstance] checkin] del:noti.serie elCapitulo:[NSNumber numberWithInteger:capitulo1]];
     }
 }
 
@@ -204,16 +206,19 @@
     return [noti.imagenes count];
 }
 
-- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
 
-    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 250, 250)];
-    [imgView setContentMode:UIViewContentModeScaleAspectFit];
-    [imgView setClipsToBounds:YES];
-    Imagen *img = [[noti imagenes]objectAtIndex:index];
-    [imgView setImageWithURL:[NSURL URLWithString:[img getThumbUrl]]];
+    if (view==nil) {
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 250, 250)];
+        [imgView setContentMode:UIViewContentModeScaleAspectFit];
+        [imgView setClipsToBounds:YES];
+        Imagen *img = [[noti imagenes]objectAtIndex:index];
+        [imgView setImageWithURL:[NSURL URLWithString:[img getThumbUrl]]];
+        view = imgView;
+    }
     
-    return imgView;
+    return view;
 }
 
 - (float)carouselItemWidth:(iCarousel *)carousel
@@ -222,18 +227,17 @@
     return 150;
 }
 
-- (CATransform3D)carousel:(iCarousel *)carousel transformForItemView:(UIView *)view withOffset:(float)offset
+- (CGFloat)carousel:(iCarousel *)carousel itemAlphaForOffset:(CGFloat)offset
+{
+	//set opacity based on distance from camera
+    return 1.0f - fminf(fmaxf(offset, 0.0f), 1.0f);
+}
+
+- (CATransform3D)carousel:(iCarousel *)_carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
 {
     //implement 'flip3D' style carousel
-    
-    //set opacity based on distance from camera
-    view.alpha = 1.0 - fminf(fmaxf(offset, 0.0), 1.0);
-    
-    //do 3d transform
-    CATransform3D transform = CATransform3DIdentity;
-    transform.m34 = carousel.perspective;
-    transform = CATransform3DRotate(transform, M_PI / 8.0, 0, 1.0, 0);
-    return CATransform3DTranslate(transform, 0.0, 0.0, offset * carousel.itemWidth);
+    transform = CATransform3DRotate(transform, M_PI / 8.0f, 0.0f, 1.0f, 0.0f);
+    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * _carousel.itemWidth);
 }
 
 - (BOOL)carouselShouldWrap:(iCarousel *)car

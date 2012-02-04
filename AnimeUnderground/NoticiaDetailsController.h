@@ -10,12 +10,13 @@
 #import "iCarousel.h"
 #import "Noticia.h"
 
-@interface NoticiaDetailsController : UIViewController {
+@interface NoticiaDetailsController : UIViewController <iCarouselDataSource, iCarouselDelegate> {
     int codigoNoticia;
     int totalImagenes;
     NSString *tid;
     int codigoEnte;
     Noticia *noti;
+    iCarousel *imagenesNoticia_;
 }
 
 @property (nonatomic, assign) int codigoNoticia;
