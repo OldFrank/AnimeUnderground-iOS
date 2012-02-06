@@ -61,6 +61,7 @@
     infoLabel_.shadowColor = [UIColor blackColor];
     infoLabel_.backgroundColor = [UIColor clearColor];
     infoLabel_.shadowOffset = CGSizeMake(0, 1);
+     
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 

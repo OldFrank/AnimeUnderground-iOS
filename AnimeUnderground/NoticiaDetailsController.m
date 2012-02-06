@@ -44,7 +44,6 @@
     [fechaNoticia release];
     [nombreNoticia release];
     [nombreAutor release];
-    [fechaNoticia release];
     [textoNoticia release];
     [scroll release];
     
