@@ -28,7 +28,9 @@
     
     IBOutlet UIPageControl *pageControl;
     IBOutlet UIScrollView *enteScroll;
+    IBOutlet UIImageView *precuelaImageView;
     
+    IBOutlet UIImageView *secuelaImageView;
 }
 @property (nonatomic, assign) int codigoSerie;
 @property (nonatomic, retain) IBOutlet UILabel *numeroCapitulos;

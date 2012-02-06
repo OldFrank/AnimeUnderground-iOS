@@ -74,7 +74,6 @@
     [self.sliderPageControl setDelegate:self];
     [self.sliderPageControl setShowsHint:YES];
     [self.view addSubview:self.sliderPageControl];
-    [self.sliderPageControl release];
     [self.sliderPageControl setNumberOfPages:[[[AUnder sharedInstance]series] count]];
     [self.sliderPageControl setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
     
@@ -86,6 +85,7 @@
     SerieDetailsController *sdc = [[SerieDetailsController alloc]init];
     [sdc setCodigoSerie:[s codigo]];
     [self.navigationController pushViewController:sdc animated:YES];
+    [sdc release];
 }
 
 
@@ -172,7 +172,7 @@
 - (NSString *)sliderPageController:(id)controller hintTitleForPage:(NSInteger)page
 {
 	NSString *hintTitle = [[NSString alloc]initWithFormat:@"Página %d",page];
-	return hintTitle;
+	return [hintTitle autorelease];
 }
 
 @end

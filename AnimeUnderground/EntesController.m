@@ -129,9 +129,9 @@
     Ente* ente = [array objectAtIndex:indexPath.row];
     
     cell.nickEnte.text = [ente nick];
-    int idx = indexPath.row;
-    if (!([ente isActivo]))
-        idx += [activos count];
+//    int idx = indexPath.row;
+//    if (!([ente isActivo]))
+//        idx += [activos count];
   
     [cell.imagenAvatar setImageWithURL:[NSURL URLWithString:[ente avatar]] placeholderImage:nil];
       

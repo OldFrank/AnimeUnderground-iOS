@@ -89,7 +89,6 @@
     [self.sliderPageControl setDelegate:self];
     [self.sliderPageControl setShowsHint:YES];
     [self.view addSubview:self.sliderPageControl];
-    [self.sliderPageControl release];
     [self.sliderPageControl setNumberOfPages:[ente.cargos count]];
     [self.sliderPageControl setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
     
@@ -173,7 +172,7 @@
 - (NSString *)sliderPageController:(id)controller hintTitleForPage:(NSInteger)page
 {
 	NSString *hintTitle = [[NSString alloc]initWithFormat:@"Página %d",page];
-	return hintTitle;
+	return [hintTitle autorelease];
 }
 
 

@@ -7,7 +7,6 @@
 //
 
 #import "SerieDetailsController.h"
-#import "DeviantDownload.h"
 #import "Serie.h"
 #import "Ente.h"
 #import "CargoEnteSerie.h"
@@ -17,7 +16,6 @@
 #import "SerieCheckinController.h"
 #import "AUnder.h"
 #import "UIImageView+WebCache.h"
-#import "UIButton+WebCache.h"
 
 
 @implementation SerieDetailsController
@@ -65,6 +63,8 @@
     [nombreEstudio release];
     [generos release];
     [sinopsis release];
+    [precuelaImageView release];
+    [secuelaImageView release];
     [super dealloc];
 }
 
@@ -90,10 +90,8 @@
     self.generos.text = [serie getGenerosString];
     self.sinopsis.text = [serie sinopsis];
     self.sinopsis.numberOfLines = 0;
-    DeviantDownload *dd = [[DeviantDownload alloc]init];
-    dd.urlString = [serie imagen];
-    self.imagen.image = [dd image];
-    
+    [self.imagen setImageWithURL:[NSURL URLWithString:[serie imagen]]];
+
     // formateo de entes
     
     self.enteScroll.delegate = self;
@@ -133,12 +131,7 @@
     
     // reorganización de la ventana
     
-    [self.sinopsis sizeToFit];
-    [self.secuelaImagen setContentMode:UIViewContentModeScaleAspectFill];
-    [self.secuelaImagen setClipsToBounds:YES];
-    [self.precuelaImagen setContentMode:UIViewContentModeScaleAspectFill];
-    [self.precuelaImagen setClipsToBounds:YES];
-    
+    [self.sinopsis sizeToFit];    
         
     if (serie.precuela!=nil && serie.secuela!=nil) {
         // tiene precuela y secuela
@@ -150,8 +143,8 @@
         precuelaTitulo.text = [[serie precuela]nombre];
         secuelaTitulo.text = [[serie secuela]nombre];
         
-        [precuelaImagen setImageWithURL:[NSURL URLWithString:[[serie precuela]imagen]] placeholderImage:nil];
-        [secuelaImagen setImageWithURL:[NSURL URLWithString:[[serie secuela]imagen]] placeholderImage:nil];
+        [precuelaImageView setImageWithURL:[NSURL URLWithString:[[serie precuela]imagen]] placeholderImage:nil];
+        [secuelaImageView setImageWithURL:[NSURL URLWithString:[[serie secuela]imagen]] placeholderImage:nil];
        
         
     } else if (serie.precuela!=nil) {
@@ -160,7 +153,7 @@
         [precuelaView setFrame:CGRectMake(0, (sinopsis.frame.origin.y+sinopsis.frame.size.height)+5, precuelaView.frame.size.width, precuelaView.frame.size.height)];
         scroll.contentSize = CGSizeMake(scroll.frame.size.width, (precuelaView.frame.origin.y+precuelaView.frame.size.height));
         precuelaTitulo.text = [[serie precuela]nombre];
-        [precuelaImagen setImageWithURL:[NSURL URLWithString:[[serie precuela]imagen]] placeholderImage:nil];
+        [precuelaImageView setImageWithURL:[NSURL URLWithString:[[serie precuela]imagen]] placeholderImage:nil];
 
     } else if (serie.secuela!=nil) {
         // tiene solo secuela
@@ -168,8 +161,7 @@
         [secuelaView setFrame:CGRectMake(0, (sinopsis.frame.origin.y+sinopsis.frame.size.height)+5, secuelaView.frame.size.width, secuelaView.frame.size.height)];
         scroll.contentSize = CGSizeMake(scroll.frame.size.width, (secuelaView.frame.origin.y+secuelaView.frame.size.height));
         secuelaTitulo.text = [[serie secuela]nombre];
-        
-        [secuelaImagen setImageWithURL:[NSURL URLWithString:[[serie secuela]imagen]] placeholderImage:nil];
+        [secuelaImageView setImageWithURL:[NSURL URLWithString:[[serie secuela]imagen]] placeholderImage:nil];
         
     } else {
         // forever alone
@@ -232,6 +224,10 @@
 
 - (void)viewDidUnload
 {
+    [precuelaImageView release];
+    precuelaImageView = nil;
+    [secuelaImageView release];
+    secuelaImageView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -255,10 +251,6 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)downloadDidFinishDownloading:(DeviantDownload *)download {
-    self.imagen.image = [download image];
 }
 
 @end
