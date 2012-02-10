@@ -11,6 +11,7 @@
 #import "SeriesController.h"
 #import "EntesController.h"
 #import "ForoController.h"
+#import "MenuCell.h"
 #import "AnimeUndergroundAppDelegate.h"
 
 @implementation MenuViewController
@@ -26,6 +27,7 @@
         
         menuElements_ = [[[NSArray alloc]initWithObjects:nc,sc,ec,fc, nil] retain];
         menuTitles_ = [[NSArray alloc]initWithObjects:@"Noticias", @"Series", @"Entes", @"Foro", nil];
+        menuImages_ = [[NSArray alloc]initWithObjects:@"noticia.png",@"series.png",@"entes.png",@"foro.png", nil];
         
         [nc release];
         [sc release];
@@ -45,6 +47,7 @@
 
 - (void)dealloc {
     [menuTitles_ release];
+    [menuImages_ release];
     [menuElements_ release];
     [super dealloc];
 }
@@ -54,12 +57,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    //[self.view setBackgroundColor:[UIColor colorWithRed:0x27/255.0f green:0x27/255.0f blue:0x27/255.0f alpha:1.0]];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 
 - (void)viewDidUnload
@@ -109,14 +111,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"MenuCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MenuCell *cell = (MenuCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
+		NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"MenuCell" owner:nil options:nil];
+		for (id currentObject in topLevelObjects) {
+			if ([currentObject isKindOfClass:[UITableViewCell class]]) {
+				cell = (MenuCell*) currentObject;
+				break;
+			}
+		}
+    }    
+    
        
-    [cell.textLabel setText:[menuTitles_ objectAtIndex:indexPath.row]];
+    [cell.titleLbl setText:[menuTitles_ objectAtIndex:indexPath.row]];
+    [cell.titleImg setImage:[UIImage imageNamed:[menuImages_ objectAtIndex:indexPath.row]]];
     
     return cell;
 }

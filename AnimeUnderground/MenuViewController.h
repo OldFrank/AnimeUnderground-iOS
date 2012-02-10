@@ -11,6 +11,7 @@
 @interface MenuViewController : UITableViewController {
     NSArray *menuElements_;
     NSArray *menuTitles_;
+    NSArray *menuImages_;
 }
 
 @end
