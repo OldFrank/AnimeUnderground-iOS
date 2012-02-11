@@ -89,6 +89,8 @@
 		AC1E3972140946C600C90206 /* EnteDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1E3970140946C600C90206 /* EnteDetailsController.m */; };
 		AC1E3973140946C600C90206 /* EnteDetailsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1E3971140946C600C90206 /* EnteDetailsController.xib */; };
 		AC2702A91408F510008DBE73 /* CargoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2702A81408F510008DBE73 /* CargoCell.m */; };
+		AC34AB9514E6F9A200316A3D /* aunder_text.png in Resources */ = {isa = PBXBuildFile; fileRef = AC34AB9314E6F9A200316A3D /* aunder_text.png */; };
+		AC34AB9614E6F9A200316A3D /* aunder_text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC34AB9414E6F9A200316A3D /* aunder_text@2x.png */; };
 		AC4D38BD14DB1F75004ECB45 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4D38B014DB1F75004ECB45 /* SDImageCache.m */; };
 		AC4D38BE14DB1F75004ECB45 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4D38B414DB1F75004ECB45 /* SDWebImageDownloader.m */; };
 		AC4D38BF14DB1F75004ECB45 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4D38B714DB1F75004ECB45 /* SDWebImageManager.m */; };
@@ -236,6 +238,8 @@
 		AC1E3971140946C600C90206 /* EnteDetailsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnteDetailsController.xib; sourceTree = "<group>"; };
 		AC2702A71408F510008DBE73 /* CargoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoCell.h; sourceTree = "<group>"; };
 		AC2702A81408F510008DBE73 /* CargoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CargoCell.m; sourceTree = "<group>"; };
+		AC34AB9314E6F9A200316A3D /* aunder_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aunder_text.png; sourceTree = "<group>"; };
+		AC34AB9414E6F9A200316A3D /* aunder_text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aunder_text@2x.png"; sourceTree = "<group>"; };
 		AC4D38AF14DB1F75004ECB45 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
 		AC4D38B014DB1F75004ECB45 /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
 		AC4D38B114DB1F75004ECB45 /* SDImageCacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCacheDelegate.h; sourceTree = "<group>"; };
@@ -527,6 +531,8 @@
 		1E83B7951373104A00AEAB73 /* Imagenes */ = {
 			isa = PBXGroup;
 			children = (
+				AC34AB9314E6F9A200316A3D /* aunder_text.png */,
+				AC34AB9414E6F9A200316A3D /* aunder_text@2x.png */,
 				AC60D6C7149941F4009E01F0 /* navbar.png */,
 				AC60D6C8149941F5009E01F0 /* navbar@2x.png */,
 				1EF9B824139A889800C42D76 /* comments.png */,
@@ -725,6 +731,8 @@
 				AC6992FD14E5956900125432 /* MenuCell.xib in Resources */,
 				AC69930014E5A05F00125432 /* menu_bg.png in Resources */,
 				AC69930114E5A05F00125432 /* menu_bg@2x.png in Resources */,
+				AC34AB9514E6F9A200316A3D /* aunder_text.png in Resources */,
+				AC34AB9614E6F9A200316A3D /* aunder_text@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

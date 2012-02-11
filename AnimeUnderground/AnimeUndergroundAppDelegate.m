@@ -44,6 +44,7 @@
     
     [rc release];
     
+    [self.window setBackgroundColor:[UIColor blackColor]];
     self.window.rootViewController = menuController_; //self.navigationController;
     [self.window makeKeyAndVisible];
     return YES;

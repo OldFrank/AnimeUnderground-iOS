@@ -58,9 +58,10 @@
 {
     [super viewDidLoad];
     
-    //[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    //[self.view setBackgroundColor:[UIColor colorWithRed:0x27/255.0f green:0x27/255.0f blue:0x27/255.0f alpha:1.0]];
-
+    // Estilo de tabla
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.view setBackgroundColor:[UIColor colorWithRed:0x67/255.0f green:0x67/255.0f blue:0x67/255.0f alpha:1.0]];
+    [self.tableView setBounces:NO];
 
 }
 
@@ -131,21 +132,39 @@
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    return @"AnimeUnderground";
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [headerView setBackgroundColor:[UIColor blackColor]];
     
+    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [imgView setImage:[UIImage imageNamed:@"navbar.png"]];
+    [headerView addSubview: imgView];
+    [imgView release];
+    
+    imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [imgView setImage:[UIImage imageNamed:@"aunder_text.png"]];
+    [headerView addSubview:imgView];
+    [imgView release];
+    
+    return [headerView autorelease];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 44;
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+   
+    //MenuCell *cell = (MenuCell*)[tableView cellForRowAtIndexPath:indexPath];
+    
     [[AppDelegate menuController] setRootController:[menuElements_ objectAtIndex:indexPath.row] animated:YES];
     [[AppDelegate menuController] setLeftController:self];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+
 }
 
 @end
