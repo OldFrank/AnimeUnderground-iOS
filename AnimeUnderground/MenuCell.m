@@ -22,12 +22,6 @@
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-}
-
 - (void)dealloc {
     [titleImg_ release];
     [titleLbl_ release];
