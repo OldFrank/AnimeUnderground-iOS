@@ -15,6 +15,7 @@
 #import "NoticiaDetailsController.h"
 #import "AUnder.h"
 #import "UIImageView+WebCache.h"
+#import "PullToRefreshCell.h"
 
 @implementation NoticiasController
 
@@ -22,7 +23,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
+    self = [super init]; //[super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
@@ -61,6 +62,11 @@
     infoLabel_.shadowColor = [UIColor blackColor];
     infoLabel_.backgroundColor = [UIColor clearColor];
     infoLabel_.shadowOffset = CGSizeMake(0, 1);
+    
+    // set the custom view for "pull to refresh". See DemoTableHeaderView.xib.
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PullToRefreshCell" owner:self options:nil];
+    PullToRefreshCell *headerView = (PullToRefreshCell *)[nib objectAtIndex:0];
+    self.headerView = headerView;
      
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -97,6 +103,74 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma mark - STableView stuff
+
+- (void) pinHeaderView
+{
+    [super pinHeaderView];
+    
+    PullToRefreshCell *p2rc = (PullToRefreshCell *)self.headerView;
+    [p2rc.pullActivityIndicator setHidden:NO];
+    [p2rc.pullActivityIndicator startAnimating];
+    [p2rc.pullLabel setText:@"Tira para actualizar"];
+}
+
+- (void) unpinHeaderView
+{
+    [super unpinHeaderView];
+    
+    PullToRefreshCell *p2rc = (PullToRefreshCell *)self.headerView;
+    [p2rc.pullActivityIndicator stopAnimating];
+}
+
+- (void) headerViewDidScroll:(BOOL)willRefreshOnRelease scrollView:(UIScrollView *)scrollView
+{
+    PullToRefreshCell *p2rc = (PullToRefreshCell *)self.headerView;
+    if (willRefreshOnRelease)
+        p2rc.pullLabel.text = @"Tira para actualizar";
+    else
+        p2rc.pullLabel.text = @"Suelta para actualizar";
+}
+
+
+- (BOOL) refresh
+{
+    if (![super refresh])
+        return NO;
+    // [self performSelector:@selector(addItemsOnTop) withObject:nil afterDelay:2.0];
+    // See -addItemsOnTop for more info on how to finish loading
+    
+    [[AUnder sharedInstance]setUpdateHandler:self];
+    
+    [[AUnder sharedInstance]update]; // el método es asíncrono
+    
+    return YES;
+}
+
+#pragma mark - AUnder update delegate
+- (void)onBeginUpdate:(AUnder*)aunder {
+    NSLog(@"Actualizacion comenzada");
+    PullToRefreshCell *p2rc = (PullToRefreshCell *)self.headerView;
+    p2rc.pullLabel.text = @"Actualizando...";
+
+}
+
+- (void)onUpdateStatus:(AUnder*)aunder:(NSString*)withStatus {
+    //NSLog(@"Estado actual de la actualización: %@",withStatus);
+}
+
+- (void)onUpdateError:(AUnder*)aunder {
+    NSLog(@"Ha habido un error actualizando");
+    [self refreshCompleted];
+}
+
+- (void)onFinishUpdate:(AUnder*)aunder {
+    NSLog(@"Actualizacion finalizada");   
+    [self.tableView reloadData];
+    [self refreshCompleted];
+}
+
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -150,6 +224,7 @@
 
 #pragma mark - KNTableView stuff
 
+/*
 -(void)infoPanelDidScroll:(UIScrollView *)scrollView atPoint:(CGPoint)point {
     
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
@@ -171,10 +246,11 @@
     [infoLabel_ setText:newFecha];
 }
 
+
 -(void)infoPanelWillAppear:(UIScrollView *)scrollView {
     if (![infoLabel_ superview]) [self.infoPanel addSubview:infoLabel_];
 }
-
+*/
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
