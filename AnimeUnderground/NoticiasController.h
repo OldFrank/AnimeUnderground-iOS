@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "STableViewController.h"
+#import "EGORefreshTableHeaderView.h"
 
 
-@interface NoticiasController : STableViewController {
+@interface NoticiasController : UITableViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource>{
+	
+	EGORefreshTableHeaderView *_refreshHeaderView;
+    BOOL _reloading;
+
     UILabel *infoLabel_;
+    
 }
 
 @end

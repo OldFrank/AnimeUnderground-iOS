@@ -107,11 +107,17 @@
 		AC6992FD14E5956900125432 /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC6992FC14E5956900125432 /* MenuCell.xib */; };
 		AC69930014E5A05F00125432 /* menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = AC6992FE14E5A05F00125432 /* menu_bg.png */; };
 		AC69930114E5A05F00125432 /* menu_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC6992FF14E5A05F00125432 /* menu_bg@2x.png */; };
-		ACC8693114E8161200FCFF26 /* STableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC8693014E8161200FCFF26 /* STableViewController.m */; };
-		ACC8693414E8199F00FCFF26 /* PullToRefreshCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC8693314E8199F00FCFF26 /* PullToRefreshCell.xib */; };
 		ACC8693614E81B8700FCFF26 /* konata_p2r.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8693514E81B8700FCFF26 /* konata_p2r.png */; };
 		ACC8693814E81B8E00FCFF26 /* konata_p2r@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8693714E81B8E00FCFF26 /* konata_p2r@2x.png */; };
-		ACC8693B14E81C9D00FCFF26 /* PullToRefreshCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC8693A14E81C9D00FCFF26 /* PullToRefreshCell.m */; };
+		ACC8694814E82A9F00FCFF26 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8694014E82A9F00FCFF26 /* blackArrow.png */; };
+		ACC8694914E82A9F00FCFF26 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8694114E82A9F00FCFF26 /* blackArrow@2x.png */; };
+		ACC8694A14E82A9F00FCFF26 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8694214E82A9F00FCFF26 /* blueArrow.png */; };
+		ACC8694B14E82A9F00FCFF26 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8694314E82A9F00FCFF26 /* blueArrow@2x.png */; };
+		ACC8694C14E82A9F00FCFF26 /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8694414E82A9F00FCFF26 /* grayArrow.png */; };
+		ACC8694D14E82A9F00FCFF26 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8694514E82A9F00FCFF26 /* grayArrow@2x.png */; };
+		ACC8694E14E82A9F00FCFF26 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8694614E82A9F00FCFF26 /* whiteArrow.png */; };
+		ACC8694F14E82A9F00FCFF26 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8694714E82A9F00FCFF26 /* whiteArrow@2x.png */; };
+		ACC8695214E82AAF00FCFF26 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC8695114E82AAF00FCFF26 /* EGORefreshTableHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -271,13 +277,18 @@
 		AC6992FC14E5956900125432 /* MenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
 		AC6992FE14E5A05F00125432 /* menu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_bg.png; sourceTree = "<group>"; };
 		AC6992FF14E5A05F00125432 /* menu_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_bg@2x.png"; sourceTree = "<group>"; };
-		ACC8692F14E8161200FCFF26 /* STableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STableViewController.h; sourceTree = "<group>"; };
-		ACC8693014E8161200FCFF26 /* STableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STableViewController.m; sourceTree = "<group>"; };
-		ACC8693314E8199F00FCFF26 /* PullToRefreshCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullToRefreshCell.xib; sourceTree = "<group>"; };
 		ACC8693514E81B8700FCFF26 /* konata_p2r.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = konata_p2r.png; sourceTree = "<group>"; };
 		ACC8693714E81B8E00FCFF26 /* konata_p2r@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "konata_p2r@2x.png"; sourceTree = "<group>"; };
-		ACC8693914E81C9D00FCFF26 /* PullToRefreshCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshCell.h; sourceTree = "<group>"; };
-		ACC8693A14E81C9D00FCFF26 /* PullToRefreshCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshCell.m; sourceTree = "<group>"; };
+		ACC8694014E82A9F00FCFF26 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		ACC8694114E82A9F00FCFF26 /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		ACC8694214E82A9F00FCFF26 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		ACC8694314E82A9F00FCFF26 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		ACC8694414E82A9F00FCFF26 /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		ACC8694514E82A9F00FCFF26 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		ACC8694614E82A9F00FCFF26 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		ACC8694714E82A9F00FCFF26 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		ACC8695014E82AAF00FCFF26 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		ACC8695114E82AAF00FCFF26 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,8 +328,6 @@
 				5694F7DF140FE48C0074CC90 /* CheckinCell.m */,
 				AC6992F814E5954900125432 /* MenuCell.h */,
 				AC6992F914E5954900125432 /* MenuCell.m */,
-				ACC8693914E81C9D00FCFF26 /* PullToRefreshCell.h */,
-				ACC8693A14E81C9D00FCFF26 /* PullToRefreshCell.m */,
 			);
 			name = Celdas;
 			sourceTree = "<group>";
@@ -326,6 +335,8 @@
 		1E040C8013646EE70004B407 /* Utiles */ = {
 			isa = PBXGroup;
 			children = (
+				ACC8695014E82AAF00FCFF26 /* EGORefreshTableHeaderView.h */,
+				ACC8695114E82AAF00FCFF26 /* EGORefreshTableHeaderView.m */,
 				AC4D38AF14DB1F75004ECB45 /* SDImageCache.h */,
 				AC4D38B014DB1F75004ECB45 /* SDImageCache.m */,
 				AC4D38B114DB1F75004ECB45 /* SDImageCacheDelegate.h */,
@@ -403,7 +414,6 @@
 				1E09C714140BA11E00AEDF72 /* EnteCell.xib */,
 				5694F7E1140FE4B10074CC90 /* CheckinCell.xib */,
 				AC6992FC14E5956900125432 /* MenuCell.xib */,
-				ACC8693314E8199F00FCFF26 /* PullToRefreshCell.xib */,
 			);
 			name = Presentacion;
 			sourceTree = "<group>";
@@ -508,7 +518,6 @@
 		1E7FDFF4134CC30D00063CCE /* AnimeUnderground */ = {
 			isa = PBXGroup;
 			children = (
-				ACC8692E14E8161200FCFF26 /* STableViewController */,
 				56C340D21406CDC60011DBDB /* GlossyButton */,
 				1E492EA814051FA600F47504 /* SliderPageControl */,
 				1E492E8A1404D2A100F47504 /* MMGridView */,
@@ -544,6 +553,14 @@
 				ACC8693514E81B8700FCFF26 /* konata_p2r.png */,
 				AC34AB9314E6F9A200316A3D /* aunder_text.png */,
 				AC34AB9414E6F9A200316A3D /* aunder_text@2x.png */,
+				ACC8694014E82A9F00FCFF26 /* blackArrow.png */,
+				ACC8694114E82A9F00FCFF26 /* blackArrow@2x.png */,
+				ACC8694214E82A9F00FCFF26 /* blueArrow.png */,
+				ACC8694314E82A9F00FCFF26 /* blueArrow@2x.png */,
+				ACC8694414E82A9F00FCFF26 /* grayArrow.png */,
+				ACC8694514E82A9F00FCFF26 /* grayArrow@2x.png */,
+				ACC8694614E82A9F00FCFF26 /* whiteArrow.png */,
+				ACC8694714E82A9F00FCFF26 /* whiteArrow@2x.png */,
 				AC60D6C7149941F4009E01F0 /* navbar.png */,
 				AC60D6C8149941F5009E01F0 /* navbar@2x.png */,
 				1EF9B824139A889800C42D76 /* comments.png */,
@@ -607,15 +624,6 @@
 				AC4D38D314DB5B09004ECB45 /* DDMenu-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		ACC8692E14E8161200FCFF26 /* STableViewController */ = {
-			isa = PBXGroup;
-			children = (
-				ACC8692F14E8161200FCFF26 /* STableViewController.h */,
-				ACC8693014E8161200FCFF26 /* STableViewController.m */,
-			);
-			path = STableViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -741,9 +749,16 @@
 				AC69930114E5A05F00125432 /* menu_bg@2x.png in Resources */,
 				AC34AB9514E6F9A200316A3D /* aunder_text.png in Resources */,
 				AC34AB9614E6F9A200316A3D /* aunder_text@2x.png in Resources */,
-				ACC8693414E8199F00FCFF26 /* PullToRefreshCell.xib in Resources */,
 				ACC8693614E81B8700FCFF26 /* konata_p2r.png in Resources */,
 				ACC8693814E81B8E00FCFF26 /* konata_p2r@2x.png in Resources */,
+				ACC8694814E82A9F00FCFF26 /* blackArrow.png in Resources */,
+				ACC8694914E82A9F00FCFF26 /* blackArrow@2x.png in Resources */,
+				ACC8694A14E82A9F00FCFF26 /* blueArrow.png in Resources */,
+				ACC8694B14E82A9F00FCFF26 /* blueArrow@2x.png in Resources */,
+				ACC8694C14E82A9F00FCFF26 /* grayArrow.png in Resources */,
+				ACC8694D14E82A9F00FCFF26 /* grayArrow@2x.png in Resources */,
+				ACC8694E14E82A9F00FCFF26 /* whiteArrow.png in Resources */,
+				ACC8694F14E82A9F00FCFF26 /* whiteArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,8 +817,7 @@
 				AC4D38C114DB1F75004ECB45 /* UIImageView+WebCache.m in Sources */,
 				AC4D38FD14DC6688004ECB45 /* MenuViewController.m in Sources */,
 				AC6992FA14E5954900125432 /* MenuCell.m in Sources */,
-				ACC8693114E8161200FCFF26 /* STableViewController.m in Sources */,
-				ACC8693B14E81C9D00FCFF26 /* PullToRefreshCell.m in Sources */,
+				ACC8695214E82AAF00FCFF26 /* EGORefreshTableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

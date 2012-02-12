@@ -15,7 +15,6 @@
 #import "NoticiaDetailsController.h"
 #import "AUnder.h"
 #import "UIImageView+WebCache.h"
-#import "PullToRefreshCell.h"
 
 @implementation NoticiasController
 
@@ -23,7 +22,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super init]; //[super initWithStyle:style];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
@@ -63,11 +62,18 @@
     infoLabel_.backgroundColor = [UIColor clearColor];
     infoLabel_.shadowOffset = CGSizeMake(0, 1);
     
-    // set the custom view for "pull to refresh". See DemoTableHeaderView.xib.
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PullToRefreshCell" owner:self options:nil];
-    PullToRefreshCell *headerView = (PullToRefreshCell *)[nib objectAtIndex:0];
-    self.headerView = headerView;
-     
+    if (_refreshHeaderView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+		view.delegate = self;
+		[self.tableView addSubview:view];
+		_refreshHeaderView = view;
+		[view release];
+		
+	}
+	
+	//  update the last update date
+	[_refreshHeaderView refreshLastUpdatedDate];
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
@@ -104,56 +110,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - STableView stuff
-
-- (void) pinHeaderView
-{
-    [super pinHeaderView];
-    
-    PullToRefreshCell *p2rc = (PullToRefreshCell *)self.headerView;
-    [p2rc.pullActivityIndicator setHidden:NO];
-    [p2rc.pullActivityIndicator startAnimating];
-    [p2rc.pullLabel setText:@"Tira para actualizar"];
-}
-
-- (void) unpinHeaderView
-{
-    [super unpinHeaderView];
-    
-    PullToRefreshCell *p2rc = (PullToRefreshCell *)self.headerView;
-    [p2rc.pullActivityIndicator stopAnimating];
-}
-
-- (void) headerViewDidScroll:(BOOL)willRefreshOnRelease scrollView:(UIScrollView *)scrollView
-{
-    PullToRefreshCell *p2rc = (PullToRefreshCell *)self.headerView;
-    if (willRefreshOnRelease)
-        p2rc.pullLabel.text = @"Tira para actualizar";
-    else
-        p2rc.pullLabel.text = @"Suelta para actualizar";
-}
-
-
-- (BOOL) refresh
-{
-    if (![super refresh])
-        return NO;
-    // [self performSelector:@selector(addItemsOnTop) withObject:nil afterDelay:2.0];
-    // See -addItemsOnTop for more info on how to finish loading
-    
-    [[AUnder sharedInstance]setUpdateHandler:self];
-    
-    [[AUnder sharedInstance]update]; // el método es asíncrono
-    
-    return YES;
-}
-
 #pragma mark - AUnder update delegate
 - (void)onBeginUpdate:(AUnder*)aunder {
     NSLog(@"Actualizacion comenzada");
-    PullToRefreshCell *p2rc = (PullToRefreshCell *)self.headerView;
-    p2rc.pullLabel.text = @"Actualizando...";
-
+    _reloading = YES;
 }
 
 - (void)onUpdateStatus:(AUnder*)aunder:(NSString*)withStatus {
@@ -162,13 +122,16 @@
 
 - (void)onUpdateError:(AUnder*)aunder {
     NSLog(@"Ha habido un error actualizando");
-    [self refreshCompleted];
+    _reloading = NO;
+	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+
 }
 
 - (void)onFinishUpdate:(AUnder*)aunder {
     NSLog(@"Actualizacion finalizada");   
     [self.tableView reloadData];
-    [self refreshCompleted];
+    _reloading = NO;
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
 }
 
 
@@ -222,35 +185,44 @@
     return 45;
 }
 
-#pragma mark - KNTableView stuff
+#pragma mark - EGO stuff
 
-/*
--(void)infoPanelDidScroll:(UIScrollView *)scrollView atPoint:(CGPoint)point {
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
-    Noticia *noti = [[[AUnder sharedInstance]noticias] objectAtIndex:indexPath.row];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"dd.MM.yy"];    
-    
-    NSDate *fecha = [dateFormatter dateFromString:noti.fecha];
+#pragma mark EGORefreshTableHeaderDelegate Methods
 
-    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"es_ES"];
-    [dateFormatter setLocale:locale];
-    [dateFormatter setDateFormat: @"MMMM, yyyy"];
-    NSString *newFecha = [[dateFormatter stringFromDate:fecha] capitalizedString];
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+    [[AUnder sharedInstance]setUpdateHandler:self];
     
-    [locale release];
-    [dateFormatter release];
+    [[AUnder sharedInstance]update]; // el método es asíncrono
+	
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return _reloading; // should return if data source model is reloading
+	
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return [NSDate date]; // should return date data source was last changed
+	
+}
+
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
+	
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     
-    [infoLabel_ setText:newFecha];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+	
 }
 
 
--(void)infoPanelWillAppear:(UIScrollView *)scrollView {
-    if (![infoLabel_ superview]) [self.infoPanel addSubview:infoLabel_];
-}
-*/
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
