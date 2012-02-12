@@ -62,6 +62,12 @@
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view setBackgroundColor:[UIColor colorWithRed:0x67/255.0f green:0x67/255.0f blue:0x67/255.0f alpha:1.0]];
     [self.tableView setBounces:NO];
+    
+    UIImageView *footer = [[UIImageView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-200, 280, 200)];
+    [footer setImage:[UIImage imageNamed:@"neko_arc.png"]];
+    [footer setContentMode:UIViewContentModeScaleAspectFit];
+    [self.view addSubview:footer];
+    [footer release];
 
 }
 

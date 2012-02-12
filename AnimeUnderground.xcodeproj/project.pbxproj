@@ -118,6 +118,8 @@
 		ACC8694E14E82A9F00FCFF26 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8694614E82A9F00FCFF26 /* whiteArrow.png */; };
 		ACC8694F14E82A9F00FCFF26 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8694714E82A9F00FCFF26 /* whiteArrow@2x.png */; };
 		ACC8695214E82AAF00FCFF26 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC8695114E82AAF00FCFF26 /* EGORefreshTableHeaderView.m */; };
+		ACC8695A14E843C200FCFF26 /* neko_arc.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8695814E843C200FCFF26 /* neko_arc.png */; };
+		ACC8695B14E843C200FCFF26 /* neko_arc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8695914E843C200FCFF26 /* neko_arc@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -289,6 +291,8 @@
 		ACC8694714E82A9F00FCFF26 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		ACC8695014E82AAF00FCFF26 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		ACC8695114E82AAF00FCFF26 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		ACC8695814E843C200FCFF26 /* neko_arc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neko_arc.png; sourceTree = "<group>"; };
+		ACC8695914E843C200FCFF26 /* neko_arc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neko_arc@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -549,6 +553,8 @@
 		1E83B7951373104A00AEAB73 /* Imagenes */ = {
 			isa = PBXGroup;
 			children = (
+				ACC8695814E843C200FCFF26 /* neko_arc.png */,
+				ACC8695914E843C200FCFF26 /* neko_arc@2x.png */,
 				ACC8693714E81B8E00FCFF26 /* konata_p2r@2x.png */,
 				ACC8693514E81B8700FCFF26 /* konata_p2r.png */,
 				AC34AB9314E6F9A200316A3D /* aunder_text.png */,
@@ -759,6 +765,8 @@
 				ACC8694D14E82A9F00FCFF26 /* grayArrow@2x.png in Resources */,
 				ACC8694E14E82A9F00FCFF26 /* whiteArrow.png in Resources */,
 				ACC8694F14E82A9F00FCFF26 /* whiteArrow@2x.png in Resources */,
+				ACC8695A14E843C200FCFF26 /* neko_arc.png in Resources */,
+				ACC8695B14E843C200FCFF26 /* neko_arc@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
