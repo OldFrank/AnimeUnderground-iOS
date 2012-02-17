@@ -80,23 +80,25 @@
     foro.user = [[NSUserDefaults standardUserDefaults] stringForKey:@"usuarioLogin_preference"];
     foro.pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"passwordLogin_preference"];
     
+    MenuViewController *mvc = [[MenuViewController alloc] initWithStyle:UITableViewStylePlain];
+    [[AppDelegate menuController] setLeftController:mvc];    
+    [mvc release];
+    
     BOOL autoLog = [[NSUserDefaults standardUserDefaults] boolForKey:@"autoLogin_preference"];
     
     if (autoLog) {
         BOOL isOK = [foro doLogin];
         if (!isOK) {
             LoginViewController *lvc = [[LoginViewController alloc]init];
-            [self.navigationController pushViewController:lvc animated:YES];
+            [[AppDelegate menuController] setRootController:lvc animated:NO];   
+            [lvc release];
+            return;
         } 
     } 
     
     NoticiasController *nc = [[NoticiasController alloc] initWithStyle:UITableViewStylePlain];
-    [[AppDelegate menuController] setRootController:nc animated:YES];
+    [[AppDelegate menuController] setRootController:nc animated:NO];
     [nc release];
-
-    MenuViewController *mvc = [[MenuViewController alloc] initWithStyle:UITableViewStylePlain];
-    [[AppDelegate menuController] setLeftController:mvc];    
-    [mvc release];
 
 }
 

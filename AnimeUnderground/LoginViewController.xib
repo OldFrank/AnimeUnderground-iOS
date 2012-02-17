@@ -42,13 +42,13 @@
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIView" id="421266951">
+					<object class="IBUIView" id="157577600">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 416}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="71257336"/>
+						<reference key="NSNextKeyView" ref="545872185"/>
 						<string key="NSReuseIdentifierKey">_NS:196</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -59,13 +59,13 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIImageView" id="71257336">
+					<object class="IBUIImageView" id="545872185">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="193447671"/>
+						<reference key="NSNextKeyView" ref="108939836"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<int key="IBUIContentMode">6</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -75,7 +75,7 @@
 							<string key="NSResourceName">fondo_login.png</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="193447671">
+					<object class="IBUILabel" id="108939836">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{27, 3}, {267, 51}}</string>
@@ -104,11 +104,11 @@
 						<int key="IBUINumberOfLines">2</int>
 						<int key="IBUITextAlignment">1</int>
 						<int key="IBUILineBreakMode">0</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="600936627">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="51203920">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="181519853">
+						<object class="NSFont" key="IBUIFont" id="790246486">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
@@ -139,7 +139,7 @@
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<int key="IBUIClearButtonMode">1</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="717182496">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="575338000">
 							<string key="name">Helvetica</string>
 							<string key="family">Helvetica</string>
 							<int key="traits">0</int>
@@ -177,13 +177,13 @@
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<int key="IBUIClearButtonMode">1</int>
-						<reference key="IBUIFontDescription" ref="717182496"/>
+						<reference key="IBUIFontDescription" ref="575338000"/>
 						<reference key="IBUIFont" ref="49156903"/>
 					</object>
 					<object class="IBUILabel" id="683105655">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{42, 349}, {237, 91}}</string>
+						<string key="NSFrame">{{42, 305}, {237, 91}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -206,8 +206,8 @@
 						<int key="IBUINumberOfLines">0</int>
 						<int key="IBUITextAlignment">1</int>
 						<int key="IBUILineBreakMode">0</int>
-						<reference key="IBUIFontDescription" ref="600936627"/>
-						<reference key="IBUIFont" ref="181519853"/>
+						<reference key="IBUIFontDescription" ref="51203920"/>
+						<reference key="IBUIFont" ref="790246486"/>
 					</object>
 					<object class="IBUIButton" id="450908225">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -224,11 +224,11 @@
 						<string key="IBUINormalTitle">Entrar</string>
 						<reference key="IBUIHighlightedTitleColor" ref="959297308"/>
 						<reference key="IBUINormalTitleColor" ref="959297308"/>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="235357835">
+						<object class="NSColor" key="IBUINormalTitleShadowColor" id="32719988">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="441074937">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="286558757">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">btn_naranja_peque.png</string>
 						</object>
@@ -259,8 +259,8 @@
 						<string key="IBUINormalTitle">¡Regístrate!</string>
 						<reference key="IBUIHighlightedTitleColor" ref="959297308"/>
 						<reference key="IBUINormalTitleColor" ref="959297308"/>
-						<reference key="IBUINormalTitleShadowColor" ref="235357835"/>
-						<reference key="IBUINormalBackgroundImage" ref="441074937"/>
+						<reference key="IBUINormalTitleShadowColor" ref="32719988"/>
+						<reference key="IBUINormalBackgroundImage" ref="286558757"/>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<string key="name">Helvetica-Bold</string>
 							<string key="family">Helvetica</string>
@@ -274,16 +274,19 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
+				<string key="NSFrame">{{0, 64}, {320, 416}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="421266951"/>
+				<reference key="NSNextKeyView" ref="157577600"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
 					<reference key="NSCustomColorSpace" ref="446574347"/>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
+					<bool key="IBUIPrompted">NO</bool>
+				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</object>
@@ -318,7 +321,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">containerView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="421266951"/>
+						<reference key="destination" ref="157577600"/>
 					</object>
 					<int key="connectionID">33</int>
 				</object>
@@ -361,9 +364,9 @@
 							<reference ref="450908225"/>
 							<reference ref="977175685"/>
 							<reference ref="686947812"/>
-							<reference ref="421266951"/>
-							<reference ref="193447671"/>
-							<reference ref="71257336"/>
+							<reference ref="157577600"/>
+							<reference ref="108939836"/>
+							<reference ref="545872185"/>
 							<reference ref="683105655"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -406,7 +409,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">32</int>
-						<reference key="object" ref="421266951"/>
+						<reference key="object" ref="157577600"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
@@ -414,12 +417,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">27</int>
-						<reference key="object" ref="71257336"/>
+						<reference key="object" ref="545872185"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">34</int>
-						<reference key="object" ref="193447671"/>
+						<reference key="object" ref="108939836"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>

@@ -10,6 +10,7 @@
 #import "Foro.h"
 #import "AUnder.h"
 #import "PreRegistroController.h"
+#import "NoticiasController.h"
 
 @implementation LoginViewController
 
@@ -45,7 +46,7 @@
     [super viewDidLoad];
     self.title = @"Iniciar sesión";
 
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:NO];
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBehind:)];
     
@@ -62,6 +63,7 @@
 
 - (void)viewDidUnload
 {
+    [self.navigationController setNavigationBarHidden:NO];
     [containerView release];
     containerView = nil;
     [super viewDidUnload];
@@ -96,14 +98,17 @@
     if (!isOK) {
         UIAlertView *alert =
         [[UIAlertView alloc] initWithTitle: @"Error"
-                                   message: @"El par usuario/contraseña es invalido,\nno se ha podido hacer login."
+                                   message: @"No se pudo iniciar sesión: el usuario o la contraseña son incorrectos."
                                   delegate: self
                          cancelButtonTitle: @"OK"
                          otherButtonTitles: nil];
         [alert show];
         [alert release];
     } else {
-        [self.navigationController popViewControllerAnimated:YES];
+        //[self.navigationController popViewControllerAnimated:YES];
+        NoticiasController *nc = [[NoticiasController alloc]init];
+        [[AppDelegate menuController] setRootController:nc animated:NO];
+        [nc release];
     }
 }
 
