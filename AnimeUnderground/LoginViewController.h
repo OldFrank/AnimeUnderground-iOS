@@ -14,6 +14,7 @@
     UITextField *pass;
     UIButton *loginB;
     UIButton *registroB;
+    IBOutlet UIView *containerView;
 }
 
 @property (nonatomic,retain) IBOutlet UITextField *usuario;

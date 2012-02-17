@@ -26,6 +26,7 @@
 
 - (void)dealloc
 {
+    [containerView release];
     [super dealloc];
 }
 
@@ -46,6 +47,12 @@
     
     [loginB setColor:[UIColor orangeColor]];
     [registroB setColor:[UIColor orangeColor]];
+  
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBehind:)];
+    
+    singleTap.numberOfTapsRequired = 1;
+    [containerView addGestureRecognizer:singleTap];
+
     
     AUnder *aunder = [AUnder sharedInstance];
     Foro *foro = [aunder foro];
@@ -57,6 +64,8 @@
 
 - (void)viewDidUnload
 {
+    [containerView release];
+    containerView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -67,6 +76,12 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+-(void)tapBehind:(id)sender {
+    [usuario resignFirstResponder];
+    [pass resignFirstResponder];
+}
+
 -(IBAction) preLogin {
     [loginB setColor: [UIColor redColor]];
 }
