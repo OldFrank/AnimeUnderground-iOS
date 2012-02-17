@@ -81,7 +81,6 @@
 		56B35E2A1413B25800D349B3 /* Checkin.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B35E291413B25800D349B3 /* Checkin.m */; };
 		56C340B8140693F50011DBDB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C340B6140693F40011DBDB /* LoginViewController.m */; };
 		56C340B9140693F50011DBDB /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C340B7140693F40011DBDB /* LoginViewController.xib */; };
-		56C340D11406B7520011DBDB /* GlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C340D01406B7520011DBDB /* GlossyButton.m */; };
 		56C340D61406F0120011DBDB /* RegistroController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C340D41406F0120011DBDB /* RegistroController.m */; };
 		56C340D71406F0120011DBDB /* RegistroController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C340D51406F0120011DBDB /* RegistroController.xib */; };
 		56DEB84614228E4A004ECC0A /* SerieCheckinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DEB84414228E4A004ECC0A /* SerieCheckinController.m */; };
@@ -120,6 +119,14 @@
 		ACC8695214E82AAF00FCFF26 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC8695114E82AAF00FCFF26 /* EGORefreshTableHeaderView.m */; };
 		ACC8695A14E843C200FCFF26 /* neko_arc.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8695814E843C200FCFF26 /* neko_arc.png */; };
 		ACC8695B14E843C200FCFF26 /* neko_arc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC8695914E843C200FCFF26 /* neko_arc@2x.png */; };
+		ACF71EDF14EEC89C00E143F0 /* fondo_login.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF71ED914EEC89C00E143F0 /* fondo_login.png */; };
+		ACF71EE014EEC89C00E143F0 /* fondo_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF71EDA14EEC89C00E143F0 /* fondo_login@2x.png */; };
+		ACF71EE114EEC89C00E143F0 /* fondo_prereg.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF71EDB14EEC89C00E143F0 /* fondo_prereg.png */; };
+		ACF71EE214EEC89C00E143F0 /* fondo_prereg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF71EDC14EEC89C00E143F0 /* fondo_prereg@2x.png */; };
+		ACF71EE314EEC89C00E143F0 /* fondo_reg.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF71EDD14EEC89C00E143F0 /* fondo_reg.png */; };
+		ACF71EE414EEC89C00E143F0 /* fondo_reg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF71EDE14EEC89C00E143F0 /* fondo_reg@2x.png */; };
+		ACF71EE814EED2A700E143F0 /* btn_naranja_peque.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF71EE614EED2A700E143F0 /* btn_naranja_peque.png */; };
+		ACF71EE914EED2A700E143F0 /* btn_naranja_peque@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF71EE714EED2A700E143F0 /* btn_naranja_peque@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -236,8 +243,6 @@
 		56C340B5140693F40011DBDB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		56C340B6140693F40011DBDB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		56C340B7140693F40011DBDB /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		56C340CF1406B7520011DBDB /* GlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlossyButton.h; sourceTree = "<group>"; };
-		56C340D01406B7520011DBDB /* GlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlossyButton.m; sourceTree = "<group>"; };
 		56C340D31406F0120011DBDB /* RegistroController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistroController.h; sourceTree = "<group>"; };
 		56C340D41406F0120011DBDB /* RegistroController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistroController.m; sourceTree = "<group>"; };
 		56C340D51406F0120011DBDB /* RegistroController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistroController.xib; sourceTree = "<group>"; };
@@ -293,6 +298,14 @@
 		ACC8695114E82AAF00FCFF26 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		ACC8695814E843C200FCFF26 /* neko_arc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neko_arc.png; sourceTree = "<group>"; };
 		ACC8695914E843C200FCFF26 /* neko_arc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neko_arc@2x.png"; sourceTree = "<group>"; };
+		ACF71ED914EEC89C00E143F0 /* fondo_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fondo_login.png; sourceTree = "<group>"; };
+		ACF71EDA14EEC89C00E143F0 /* fondo_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fondo_login@2x.png"; sourceTree = "<group>"; };
+		ACF71EDB14EEC89C00E143F0 /* fondo_prereg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fondo_prereg.png; sourceTree = "<group>"; };
+		ACF71EDC14EEC89C00E143F0 /* fondo_prereg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fondo_prereg@2x.png"; sourceTree = "<group>"; };
+		ACF71EDD14EEC89C00E143F0 /* fondo_reg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fondo_reg.png; sourceTree = "<group>"; };
+		ACF71EDE14EEC89C00E143F0 /* fondo_reg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fondo_reg@2x.png"; sourceTree = "<group>"; };
+		ACF71EE614EED2A700E143F0 /* btn_naranja_peque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_naranja_peque.png; sourceTree = "<group>"; };
+		ACF71EE714EED2A700E143F0 /* btn_naranja_peque@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_naranja_peque@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -522,7 +535,6 @@
 		1E7FDFF4134CC30D00063CCE /* AnimeUnderground */ = {
 			isa = PBXGroup;
 			children = (
-				56C340D21406CDC60011DBDB /* GlossyButton */,
 				1E492EA814051FA600F47504 /* SliderPageControl */,
 				1E492E8A1404D2A100F47504 /* MMGridView */,
 				1E83B7951373104A00AEAB73 /* Imagenes */,
@@ -553,6 +565,14 @@
 		1E83B7951373104A00AEAB73 /* Imagenes */ = {
 			isa = PBXGroup;
 			children = (
+				ACF71EE614EED2A700E143F0 /* btn_naranja_peque.png */,
+				ACF71EE714EED2A700E143F0 /* btn_naranja_peque@2x.png */,
+				ACF71ED914EEC89C00E143F0 /* fondo_login.png */,
+				ACF71EDA14EEC89C00E143F0 /* fondo_login@2x.png */,
+				ACF71EDB14EEC89C00E143F0 /* fondo_prereg.png */,
+				ACF71EDC14EEC89C00E143F0 /* fondo_prereg@2x.png */,
+				ACF71EDD14EEC89C00E143F0 /* fondo_reg.png */,
+				ACF71EDE14EEC89C00E143F0 /* fondo_reg@2x.png */,
 				ACC8695814E843C200FCFF26 /* neko_arc.png */,
 				ACC8695914E843C200FCFF26 /* neko_arc@2x.png */,
 				ACC8693714E81B8E00FCFF26 /* konata_p2r@2x.png */,
@@ -603,15 +623,6 @@
 				1EB882CB13549C3B001CE8ED /* TBXML.m */,
 			);
 			path = TBXML;
-			sourceTree = "<group>";
-		};
-		56C340D21406CDC60011DBDB /* GlossyButton */ = {
-			isa = PBXGroup;
-			children = (
-				56C340CF1406B7520011DBDB /* GlossyButton.h */,
-				56C340D01406B7520011DBDB /* GlossyButton.m */,
-			);
-			name = GlossyButton;
 			sourceTree = "<group>";
 		};
 		AC4D38D114DB5B09004ECB45 /* DDMenu */ = {
@@ -767,6 +778,14 @@
 				ACC8694F14E82A9F00FCFF26 /* whiteArrow@2x.png in Resources */,
 				ACC8695A14E843C200FCFF26 /* neko_arc.png in Resources */,
 				ACC8695B14E843C200FCFF26 /* neko_arc@2x.png in Resources */,
+				ACF71EDF14EEC89C00E143F0 /* fondo_login.png in Resources */,
+				ACF71EE014EEC89C00E143F0 /* fondo_login@2x.png in Resources */,
+				ACF71EE114EEC89C00E143F0 /* fondo_prereg.png in Resources */,
+				ACF71EE214EEC89C00E143F0 /* fondo_prereg@2x.png in Resources */,
+				ACF71EE314EEC89C00E143F0 /* fondo_reg.png in Resources */,
+				ACF71EE414EEC89C00E143F0 /* fondo_reg@2x.png in Resources */,
+				ACF71EE814EED2A700E143F0 /* btn_naranja_peque.png in Resources */,
+				ACF71EE914EED2A700E143F0 /* btn_naranja_peque@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,7 +827,6 @@
 				1E492EA21405178E00F47504 /* UIImage+Resize.m in Sources */,
 				1E492EAD14051FA700F47504 /* SliderPageControl.m in Sources */,
 				56C340B8140693F50011DBDB /* LoginViewController.m in Sources */,
-				56C340D11406B7520011DBDB /* GlossyButton.m in Sources */,
 				56C340D61406F0120011DBDB /* RegistroController.m in Sources */,
 				56A6FB4F1407F6A8006B34E0 /* PreRegistroController.m in Sources */,
 				AC2702A91408F510008DBE73 /* CargoCell.m in Sources */,

@@ -12,15 +12,13 @@
 @interface LoginViewController : UIViewController {
     UITextField *usuario;
     UITextField *pass;
-    UIButton *loginB;
-    UIButton *registroB;
     IBOutlet UIView *containerView;
 }
 
 @property (nonatomic,retain) IBOutlet UITextField *usuario;
 @property (nonatomic,retain) IBOutlet UITextField *pass;
-@property (nonatomic,retain) IBOutlet UIButton *loginB;
-@property (nonatomic,retain) IBOutlet UIButton *registroB;
--(IBAction) login;
--(IBAction) registrarse;
+
+-(IBAction)doLogin:(id)sender;
+-(IBAction)doRegister:(id)sender;
+
 @end

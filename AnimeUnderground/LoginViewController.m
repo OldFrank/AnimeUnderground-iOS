@@ -13,7 +13,7 @@
 
 @implementation LoginViewController
 
-@synthesize usuario,pass,loginB,registroB;
+@synthesize usuario,pass;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,22 +43,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO];
+    self.title = @"Iniciar sesión";
+
+    [self.navigationController setNavigationBarHidden:YES];
     
-    [loginB setColor:[UIColor orangeColor]];
-    [registroB setColor:[UIColor orangeColor]];
-  
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBehind:)];
     
     singleTap.numberOfTapsRequired = 1;
     [containerView addGestureRecognizer:singleTap];
-
+    
     
     AUnder *aunder = [AUnder sharedInstance];
     Foro *foro = [aunder foro];
     usuario.text = foro.user;
     pass.text = foro.pass;
-    self.title = @"Login";
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -81,20 +79,7 @@
     [usuario resignFirstResponder];
     [pass resignFirstResponder];
 }
-
--(IBAction) preLogin {
-    [loginB setColor: [UIColor redColor]];
-}
--(IBAction) preRegistro {
-    [registroB setColor: [UIColor redColor]];
-}
--(IBAction) postLogin {
-    [loginB setColor: [UIColor orangeColor]];
-}
--(IBAction) postRegistro {
-    [registroB setColor: [UIColor orangeColor]];
-}
--(IBAction) login {
+-(IBAction)doLogin:(id)sender {
     NSString *user = usuario.text;
     NSString *password = pass.text;
     AUnder *aunder = [AUnder sharedInstance];
@@ -120,12 +105,12 @@
     } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
-    [loginB setColor: [UIColor orangeColor]];    
 }
--(IBAction) registrarse {
-    [registroB setColor: [UIColor orangeColor]];
+
+-(IBAction)doRegister:(id)sender {
     PreRegistroController *rc = [[PreRegistroController alloc] init];
-    [self.navigationController pushViewController: rc animated:YES];
+    [[AppDelegate menuController] setRootController:rc animated:YES];
+    //[self.navigationController pushViewController: rc animated:YES];
     [rc release];
 }
 @end

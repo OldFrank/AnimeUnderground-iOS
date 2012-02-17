@@ -10,16 +10,16 @@
 
 
 @interface RegistroController : UIViewController {
-    UIButton *registrarseB;
     UIImageView *catcha;
     NSString* imagehash;
     UITextField* username;
     UITextField* password;
     UITextField* email;
     UITextField* catpcha;    
+    IBOutlet UIButton *containerView;
+    IBOutlet UIActivityIndicatorView *loadingSpinner;
 }
 
-@property (nonatomic,retain) IBOutlet UIButton *registrarseB;
 @property (nonatomic,retain) IBOutlet UIImageView *catcha;
 @property (nonatomic,retain) IBOutlet UITextField* username;
 @property (nonatomic,retain) IBOutlet UITextField* password;

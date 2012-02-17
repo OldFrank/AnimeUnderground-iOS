@@ -10,8 +10,6 @@
 
 
 @interface PreRegistroController : UIViewController {
-    UIButton *registroB;
 }
 
-@property (nonatomic,retain) IBOutlet UIButton *registroB;
 @end

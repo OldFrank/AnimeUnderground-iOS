@@ -9,10 +9,10 @@
 #import "RegistroController.h"
 #import "AUnder.h"
 #import "Foro.h"
+#import "LoginViewController.h"
 
 @implementation RegistroController
 
-@synthesize registrarseB;
 @synthesize catcha;
 @synthesize username,password,catpcha,email;
 
@@ -27,6 +27,8 @@
 
 - (void)dealloc
 {
+    [containerView release];
+    [loadingSpinner release];
     [super dealloc];
 }
 
@@ -43,7 +45,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [registrarseB setColor: [UIColor orangeColor]];
     [self setTitle:@"Registro"];
     AUnder *aunder = [AUnder sharedInstance];
     Foro *foro = [aunder foro];
@@ -74,8 +75,15 @@
                 NSData *mydata = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:imageURL]];
                 UIImage *myimage = [[UIImage alloc] initWithData:mydata];
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [loadingSpinner stopAnimating];
+                    [catcha setAlpha:0.0];                    
                     catcha.image = myimage;
                     [myimage release];
+                    
+                    [UIView animateWithDuration:1 animations:^{
+                        [catcha setAlpha:0.7]; 
+                    }];
+                    
                 });
         
             });
@@ -106,14 +114,19 @@
 - (void) handleBack:(id)sender
 {
 	NSLog(@"Atrás");
-	int anterior = [self.navigationController.viewControllers count]-3;
-	
-	[self.navigationController popToViewController: [self.navigationController.viewControllers objectAtIndex:anterior] animated:YES];
+	//int anterior = [self.navigationController.viewControllers count]-3;
+	LoginViewController *lvc = [[LoginViewController alloc]init];
+    [[AppDelegate menuController] setRootController:lvc animated:YES];
+	//[self.navigationController popToViewController: [self.navigationController.viewControllers objectAtIndex:anterior] animated:YES];
 }
 
 
 - (void)viewDidUnload
 {
+    [containerView release];
+    containerView = nil;
+    [loadingSpinner release];
+    loadingSpinner = nil;
     [super viewDidUnload];
     [imagehash release];
     // Release any retained subviews of the main view.
@@ -137,16 +150,7 @@
         
 } 
 
--(IBAction) preRegistrarse {
-    [registrarseB setColor: [UIColor redColor]];
-}
-
--(IBAction) postRegistrarse {
-    [registrarseB setColor: [UIColor orangeColor]];
-}
-
 -(IBAction) registrarse {
-    [registrarseB setColor: [UIColor orangeColor]];
     //TODO mandar registro a AU accion do_login y que sea lo que dios quiera.
     
     AUnder *aunder = [AUnder sharedInstance];
@@ -181,7 +185,7 @@
     if (correcto) {
         NSString *url = @"http://foro.aunder.org/member.php";
         NSString *parametros = [NSString stringWithFormat: @"action=do_register&step=registration&username=%@&password=%@&password2=%@&email=%@&email2=%@&imagestring=%@&%@&allownotices=1&hideemail=1&receivepms=1&pmnotice=1&emailpmnotify=1&invisible=0&subscriptionmethod=0&timezoneoffset=2&dstcorrection=2&language=",username.text,password.text,password.text,email.text,email.text,catpcha.text,imagehash];
-        NSLog(parametros);
+        NSLog(@"%@",parametros);
         NSString *datos= [foro webPost: url : parametros];
         NSRange range = [datos rangeOfString:@"Gracias por registrarte"];
         if (range.location == NSNotFound)

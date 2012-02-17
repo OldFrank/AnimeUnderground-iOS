@@ -39,8 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Acuerdo de Registro";
-    [registroB setColor:[UIColor orangeColor]];
+    self.title = @"Acuerdo de registro";
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -57,20 +56,12 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(IBAction) preRegistrarse {
-    [registroB setColor: [UIColor redColor]];
-}
-
--(IBAction) postRegistrarse {
-    [registroB setColor: [UIColor orangeColor]];
-} 
-
 -(IBAction) registrar {
 
-        [registroB setColor: [UIColor orangeColor]];
-        RegistroController *rc = [[RegistroController alloc] init];
-        [self.navigationController pushViewController: rc animated:YES];
-        [rc release];
+    RegistroController *rc = [[RegistroController alloc] init];
+    [[AppDelegate menuController] setRootController:rc animated:YES];
+    //[self.navigationController pushViewController: rc animated:YES];
+    [rc release];
 
 }
 
