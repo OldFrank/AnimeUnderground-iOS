@@ -292,7 +292,7 @@ static Checkin* theChecks = nil;
                 descargaTorrentElem = [TBXML nextSiblingNamed:@"Torrent" searchFromElement:noticia];
             }
             NSMutableArray *imagenes = [[NSMutableArray alloc]init];
-            TBXML *imagenesElem = [TBXML childElementNamed:@"Imagen" parentElement:noticia];
+            TBXMLElement *imagenesElem = [TBXML childElementNamed:@"Imagen" parentElement:noticia];
             while (imagenesElem!=NULL) {
                 NSString *enlace = [TBXML textForElement:imagenesElem];
                 Imagen *img = [[[Imagen alloc]initWithImagen:enlace]retain];
@@ -302,7 +302,7 @@ static Checkin* theChecks = nil;
             }
             
             //Añadido checkins
-            TBXML *capiElem =[TBXML childElementNamed:@"Capitulo" parentElement:noticia];
+            TBXMLElement *capiElem =[TBXML childElementNamed:@"Capitulo" parentElement:noticia];
             NSString *capiNoticia = nil;
             if (capiElem != NULL) {
                 capiNoticia = [TBXML textForElement:capiElem];
@@ -311,7 +311,7 @@ static Checkin* theChecks = nil;
             // construimos la noticia
             
             Noticia *n = [[[Noticia alloc]init]retain];
-            n.codigo = idn;
+            n.codigo = [idn intValue];
             n.titulo = tituloNoticia;
             n.autor = [[self getEnteByName:autorNoticia]retain];
             n.fecha = fechaNoticia;

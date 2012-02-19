@@ -190,14 +190,21 @@
         NSRange range = [datos rangeOfString:@"Gracias por registrarte"];
         if (range.location == NSNotFound)
         {
-            //TODO no se ha podido registrar.
-            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No se ha podido registrar el usuario debido a un error de comunicación con la web. Inténtalo de nuevo más tarde." 
+                                                           delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            [alert release];            
         } else {
             foro.user = username.text;
             [[NSUserDefaults standardUserDefaults] setValue:foro.user forKey:@"usuarioLogin_preference"];
             foro.pass = password.text;
             [[NSUserDefaults standardUserDefaults] setValue:foro.pass forKey:@"passwordLogin_preference"];
         }
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No se puede proceder al registro debido a que hay algún error en los campos a rellenar." 
+                                                       delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
     }
     
 
