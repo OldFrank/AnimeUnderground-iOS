@@ -54,6 +54,9 @@
  
     [self setTitle:@"Noticias"];
     
+    [self.tableView setSeparatorColor:[UIColor blackColor]];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    
     infoLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(16, 4, 140, 20)];
     infoLabel_.font = [UIFont boldSystemFontOfSize:12];
     infoLabel_.textAlignment = UITextAlignmentLeft;
@@ -166,8 +169,8 @@
     Noticia *noti = [[[AUnder sharedInstance]noticias] objectAtIndex:indexPath.row];
     
     cell.titulo.text = [noti titulo];
-    cell.autor.text = [[noti autor]nick];
-    cell.fecha.text = [noti fecha];
+//    cell.autor.text = [[noti autor]nick];
+//    cell.fecha.text = [noti fecha];
     
     cell.titulo.tag = [noti codigo];
     

@@ -10,8 +10,8 @@
 #import "EnteDetailsController.h"
 #import "EnteCell.h"
 #import "Ente.h"
-#import "UIImage+Resize.h"
-#import "UIImageView+WebCache.h"
+#import "UIImage+Mask.h"
+#import "UIImageView+Mask.h"
 #import "AUnder.h"
 
 @implementation EntesController
@@ -125,7 +125,7 @@
 			}
 		}
     }    
-
+    
     Ente* ente = [array objectAtIndex:indexPath.row];
     
     cell.nickEnte.text = [ente nick];
@@ -133,8 +133,8 @@
 //    if (!([ente isActivo]))
 //        idx += [activos count];
   
-    [cell.imagenAvatar setImageWithURL:[NSURL URLWithString:[ente avatar]] placeholderImage:nil];
-      
+    [cell.imagenAvatar setImageWithURL:[NSURL URLWithString:[ente avatar]] placeholderImage:nil withMask:[UIImage imageNamed:@"avatar_ente_mask.png"]];
+    
     return cell;
 }
 
