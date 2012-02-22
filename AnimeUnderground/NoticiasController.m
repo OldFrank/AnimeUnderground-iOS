@@ -175,7 +175,7 @@
     cell.titulo.tag = [noti codigo];
     
     if ([[noti imagenes] count]>0 && cell.imageView.image==nil) {
-        NSString *url = [(Imagen*)[noti.imagenes objectAtIndex:0] getThumbUrl];
+        NSString *url = [(Imagen*)[noti.imagenes objectAtIndex:0] getImageUrl];
         [cell.imagen setImageWithURL:[NSURL URLWithString: url] placeholderImage:nil];
     }
     

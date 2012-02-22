@@ -28,6 +28,7 @@
     
     if ([[UINavigationBar class]respondsToSelector:@selector(appearance)]) {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbar.png"] forBarMetrics:UIBarMetricsDefault];
+        [[UINavigationBar appearance] setTintColor:[UIColor redColor]];
     }
     
     NSString *cargado = [[NSUserDefaults standardUserDefaults] stringForKey:@"usuarioLogin_preference"];
@@ -41,7 +42,7 @@
     RootViewController *rc = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
     
     menuController_ = [[DDMenuController alloc]initWithRootViewController:rc];
-    
+
     [rc release];
     
     [self.window setBackgroundColor:[UIColor blackColor]];

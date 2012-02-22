@@ -489,7 +489,8 @@
     
     if (_right) {
             
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showRight:)];
+//        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showRight:)];
+        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_menu.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showRight:)];
         controller.navigationItem.rightBarButtonItem = button;
         _menuFlags.canShowRight = YES;
 
@@ -512,7 +513,8 @@
     
     if (_left) {
         
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showLeft:)];
+//        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showLeft:)];
+        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_menu.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showLeft:)];
         controller.navigationItem.leftBarButtonItem = button;
         _menuFlags.canShowLeft = YES;
 
